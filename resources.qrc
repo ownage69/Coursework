@@ -1,0 +1,53 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/images">
+          <file alias="audi_a3.jpg">images/car_audi_a3.jpg</file>
+          <file alias="audi_a4.jpg">images/car_audi_a4.jpg</file>
+          <file alias="audi_a6.jpg">images/car_audi_a6.jpg</file>
+          <file alias="audi_q5.jpg">images/car_audi_q5.jpg</file>
+          <file alias="audi_q7.jpg">images/car_audi_q7.jpg</file>
+          <file alias="bmw_3_series.jpg">images/car_bmw_3-series.jpg</file>
+          <file alias="bmw_5_series.jpg">images/car_bmw_5-series.jpg</file>
+          <file alias="bmw_7_series.jpg">images/car_bmw_7-series.jpg</file>
+          <file alias="bmw_x3.jpg">images/car_bmw_x3.jpg</file>
+          <file alias="bmw_x5.jpg">images/car_bmw_x5.jpg</file>
+          <file alias="chevrolet_camaro.jpg">images/car_chevrolet_camaro.jpg</file>
+          <file alias="chevrolet_equinox.jpg">images/car_chevrolet_equinox.jpg</file>
+          <file alias="chevrolet_malibu.jpg">images/car_chevrolet_malibu.jpg</file>
+          <file alias="chevrolet_silverado.jpg">images/car_chevrolet_silverado.jpg</file>
+          <file alias="chevrolet_tahoe.jpg">images/car_chevrolet_tahoe.jpg</file>
+          <file alias="ford_escape.jpg">images/car_ford_escape.jpg</file>
+          <file alias="ford_explorer.jpg">images/car_ford_explorer.jpg</file>
+          <file alias="ford_f_150.jpg">images/car_ford_f-150.jpg</file>
+          <file alias="ford_focus.jpg">images/car_ford_focus.jpg</file>
+          <file alias="ford_mustang.jpg">images/car_ford_mustang.jpg</file>
+          <file alias="honda_accord.jpg">images/car_honda_accord.jpg</file>
+          <file alias="honda_civic.jpg">images/car_honda_civic.jpg</file>
+          <file alias="honda_cr_v.jpg">images/car_honda_cr-v.jpg</file>
+          <file alias="honda_fit.jpg">images/car_honda_fit.jpg</file>
+          <file alias="honda_pilot.jpg">images/car_honda_pilot.jpg</file>
+          <file alias="hyundai_elantra.jpg">images/car_hyundai_elantra.jpg</file>
+          <file alias="hyundai_kona.jpg">images/car_hyundai_kona.jpg</file>
+          <file alias="hyundai_santa_fe.jpg">images/car_hyundai_santa-fe.jpg</file>
+          <file alias="hyundai_sonata.jpg">images/car_hyundai_sonata.jpg</file>
+          <file alias="hyundai_tucson.jpg">images/car_hyundai_tucson.jpg</file>
+          <file alias="mercedes_benz_c_class.jpg">images/car_mercedes-benz_c-class.jpg</file>
+          <file alias="mercedes_benz_e_class.jpg">images/car_mercedes-benz_e-class.jpg</file>
+          <file alias="mercedes_benz_s_class.jpg">images/car_mercedes-benz_s-class.jpg</file>
+          <file alias="nissan_altima.jpg">images/car_nissan_altima.jpg</file>
+          <file alias="nissan_pathfinder.jpg">images/car_nissan_pathfinder.jpg</file>
+          <file alias="nissan_rogue.jpg">images/car_nissan_rogue.jpg</file>
+          <file alias="nissan_sentra.jpg">images/car_nissan_sentra.jpg</file>
+          <file alias="nissan_titan.jpg">images/car_nissan_titan.jpg</file>
+          <file alias="toyota_camry.jpg">images/car_toyota_camry.jpg</file>
+          <file alias="toyota_corolla.jpg">images/car_toyota_corolla.jpg</file>
+          <file alias="toyota_highlander.jpg">images/car_toyota_highlander.jpg</file>
+          <file alias="toyota_prius.jpg">images/car_toyota_prius.jpg</file>
+          <file alias="toyota_rav4.jpg">images/car_toyota_rav4.jpg</file>
+          <file alias="default_car.png">images/default_car.jpg</file>
+    </qresource>
+    <qresource prefix="/icons">
+          <file alias="pencil.png">icons/pencil.png</file>
+          <file alias="trash.png">icons/trash.png</file>
+    </qresource>
+</RCC>

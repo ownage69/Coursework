@@ -5,6 +5,8 @@
 !src/
 !includes/
 !.gitignore
+!coursework.pro
+!resources.qrc
 
 # Внутри папок тоже разрешить всё
 !src/**
