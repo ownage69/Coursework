@@ -9,6 +9,8 @@
 !resources.qrc
 !sonar-project.properties
 !.github/
+!images/
+!icons/
 
 # Внутри папок тоже разрешить всё
 !src/**
