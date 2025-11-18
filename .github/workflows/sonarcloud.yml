@@ -16,9 +16,21 @@ jobs:
       with:
         fetch-depth: 0
         
-    - name: Setup SonarCloud
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+      
+    - name: Build project (optional)
+      run: |
+        msbuild Coursework.vcxproj /p:Configuration=Debug /p:Platform=x64
+      continue-on-error: true
+        
+    - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v2
+      with:
+        projectBaseDir: .
+        args: >
+          -Dsonar.cfamily.compile-commands=compile_commands.json
+          -Dsonar.cfamily.build-wrapper-output=bw-output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
