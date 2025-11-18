@@ -1,10 +1,10 @@
 #include "dealership_manager.h"
 #include <QFile>
+#include <QDebug>
 #include <QTextStream>
 #include <QDir>
 #include <QCoreApplication>
 #include <sstream>
-#include <iostream>
 #include <iomanip>
 #include <QMessageBox>
 #include <QtGlobal>
