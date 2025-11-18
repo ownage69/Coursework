@@ -10,7 +10,7 @@ private:
     std::string dataPath;
 
 public:
-    CarRepository(const std::string& dataPath = "");
+    explicit CarRepository(const std::string& dataPath = "");
     
     const std::vector<Car>& getAll() const;
     bool add(const Car& car);

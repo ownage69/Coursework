@@ -24,7 +24,7 @@ std::string generateVIN() {
     std::string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, chars.size() - 1);
+    std::uniform_int_distribution<> dis(0, static_cast<int>(chars.size()) - 1);
     for (int i = 0; i < 17; ++i) {
         vin += chars[dis(gen)];
     }

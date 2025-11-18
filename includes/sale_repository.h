@@ -10,7 +10,7 @@ private:
     std::string dataPath;
 
 public:
-    SaleRepository(const std::string& dataPath = "");
+    explicit SaleRepository(const std::string& dataPath = "");
     
     const std::vector<Sale>& getAll() const;
     bool add(const Sale& sale);

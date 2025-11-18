@@ -20,11 +20,11 @@ SalesReportDialog::SalesReportDialog(DealershipManager* manager, QWidget* parent
 }
 
 void SalesReportDialog::setupUI() {
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     
     // Date range selection
-    QGroupBox* dateGroup = new QGroupBox("Date Range");
-    QHBoxLayout* dateLayout = new QHBoxLayout;
+    auto* dateGroup = new QGroupBox("Date Range");
+    auto* dateLayout = new QHBoxLayout;
     
     dateLayout->addWidget(new QLabel("From:"));
     startDateEdit = new QDateEdit;
@@ -52,7 +52,7 @@ void SalesReportDialog::setupUI() {
     mainLayout->addWidget(dateGroup);
     
     // Summary labels
-    QHBoxLayout* summaryLayout = new QHBoxLayout;
+    auto* summaryLayout = new QHBoxLayout;
     totalSalesLabel = new QLabel("Total Sales: 0");
     totalSalesLabel->setStyleSheet("font-size: 14px; font-weight: bold; color: #2c3e50;");
     totalRevenueLabel = new QLabel("Total Revenue: $0.00");
@@ -73,7 +73,7 @@ void SalesReportDialog::setupUI() {
     mainLayout->addWidget(reportTable);
     
     // Export buttons
-    QHBoxLayout* buttonLayout = new QHBoxLayout;
+    auto* buttonLayout = new QHBoxLayout;
     buttonLayout->addStretch();
     
     QPushButton* exportExcelButton = new QPushButton("Export to Excel");
@@ -114,7 +114,7 @@ void SalesReportDialog::generateReport() {
     double totalRevenue = 0.0;
     
     // Group sales by date
-    std::map<std::string, std::vector<const Sale*>> salesByDate;
+    std::map<std::string, std::vector<const Sale*>, std::less<>> salesByDate;
     
     for (const auto& sale : sales) {
         QString dateStr = QString::fromStdString(sale.getDate());
@@ -128,8 +128,8 @@ void SalesReportDialog::generateReport() {
     }
     
     // Populate table
-    for (const auto& pair : salesByDate) {
-        for (const auto* sale : pair.second) {
+    for (const auto& [date, salesList] : salesByDate) {
+        for (const auto* sale : salesList) {
             int row = reportTable->rowCount();
             reportTable->insertRow(row);
             

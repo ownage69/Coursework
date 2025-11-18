@@ -15,7 +15,7 @@ private:
     bool adminMode;
 
 public:
-    AccessModeDialog(QWidget* parent = nullptr);
+    explicit AccessModeDialog(QWidget* parent = nullptr);
     
     bool isAdminMode() const { return adminMode; }
 

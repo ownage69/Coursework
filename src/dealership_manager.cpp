@@ -2,11 +2,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 
-DealershipManager::DealershipManager() 
-    : carRepository("D:/Labs/3sem/labsBSUIR3rdTerm/coursework/"),
-      clientRepository("D:/Labs/3sem/labsBSUIR3rdTerm/coursework/"),
-      saleRepository("D:/Labs/3sem/labsBSUIR3rdTerm/coursework/"),
-      dataLoaded(false) {
+DealershipManager::DealershipManager() {
     loadDataFromFiles();
     dataLoaded = true;
 }
@@ -116,7 +112,7 @@ bool DealershipManager::loadData() {
     return loadDataFromFiles();
 }
 
-bool DealershipManager::saveData() {
+bool DealershipManager::saveData() const {
     return carRepository.saveToFile() && 
            clientRepository.saveToFile() && 
            saleRepository.saveToFile();

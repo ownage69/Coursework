@@ -10,10 +10,10 @@ int InventoryService::getTotalCarsInStock(const std::vector<Car>& cars) {
 }
 
 int InventoryService::getTotalUniqueModels(const std::vector<Car>& cars) {
-    std::set<std::string> models;
+    std::set<std::string, std::less<>> models;
     for (const auto& car : cars) {
         models.insert(car.getBrand() + " " + car.getModel());
     }
-    return models.size();
+    return static_cast<int>(models.size());
 }
 

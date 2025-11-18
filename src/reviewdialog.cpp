@@ -7,11 +7,11 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
     setWindowTitle("Add Review");
     setModal(true);
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     
-    QFormLayout* formLayout = new QFormLayout;
+    auto* formLayout = new QFormLayout;
     
-    carCombo = new QComboBox;
+    carCombo = new QComboBox(this);
     
     const auto& cars = manager.getCars();
     
@@ -20,16 +20,16 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
         return;
     }
     
-    for (size_t i = 0; i < cars.size(); ++i) {
-        std::string carInfo = cars[i].getBrand() + " " + cars[i].getModel() + " (" + 
-                             std::to_string(cars[i].getYear()) + ")";
+    for (const auto& car : cars) {
+        std::string carInfo = car.getBrand() + " " + car.getModel() + " (" + 
+                             std::to_string(car.getYear()) + ")";
         carCombo->addItem(QString::fromStdString(carInfo));
     }
     
-    reviewEdit = new QTextEdit;
+    reviewEdit = new QTextEdit(this);
     reviewEdit->setMaximumHeight(100);
     
-    ratingSpin = new QSpinBox;
+    ratingSpin = new QSpinBox(this);
     ratingSpin->setRange(1, 5);
     
     formLayout->addRow("Select Car:", carCombo);
@@ -38,7 +38,7 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
     
     mainLayout->addLayout(formLayout);
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mainLayout->addWidget(buttonBox);
     
     connect(buttonBox, &QDialogButtonBox::accepted, this, &ReviewDialog::validateAndAccept);

@@ -10,7 +10,7 @@ private:
     std::string dataPath;
 
 public:
-    ClientRepository(const std::string& dataPath = "");
+    explicit ClientRepository(const std::string& dataPath = "");
     
     const std::vector<Client>& getAll() const;
     bool add(const Client& client);

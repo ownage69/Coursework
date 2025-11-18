@@ -54,14 +54,15 @@ bool ClientRepository::loadFromFile() {
     }
     
     clients.clear();
-    QFile clientFile(QString::fromStdString(dataPath + "clients.txt"));
-    if (clientFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (QFile clientFile(QString::fromStdString(dataPath + "clients.txt")); clientFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&clientFile);
         while (!in.atEnd()) {
             QString line = in.readLine();
             if (!line.isEmpty()) {
                 try {
                     clients.push_back(Client::fromString(line.toStdString()));
+                } catch (const std::invalid_argument& e) {
+                    qCritical() << "Error parsing client (invalid argument): " << e.what();
                 } catch (const std::exception& e) {
                     qCritical() << "Error parsing client: " << e.what();
                 }
@@ -78,8 +79,7 @@ bool ClientRepository::saveToFile() const {
         return false;
     }
     
-    QFile clientFile(QString::fromStdString(dataPath + "clients.txt"));
-    if (clientFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (QFile clientFile(QString::fromStdString(dataPath + "clients.txt")); clientFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&clientFile);
         for (const auto& client : clients) {
             out << QString::fromStdString(client.toString()) << "\n";

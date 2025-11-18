@@ -55,14 +55,15 @@ bool CarRepository::loadFromFile() {
     }
     
     cars.clear();
-    QFile carFile(QString::fromStdString(dataPath + "cars.txt"));
-    if (carFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (QFile carFile(QString::fromStdString(dataPath + "cars.txt")); carFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&carFile);
         while (!in.atEnd()) {
             QString line = in.readLine();
             if (!line.isEmpty()) {
                 try {
                     cars.push_back(CarSerializer::fromString(line.toStdString()));
+                } catch (const std::invalid_argument& e) {
+                    qCritical() << "Error parsing car (invalid argument): " << e.what();
                 } catch (const std::exception& e) {
                     qCritical() << "Error parsing car: " << e.what();
                 }
@@ -79,8 +80,7 @@ bool CarRepository::saveToFile() const {
         return false;
     }
     
-    QFile carFile(QString::fromStdString(dataPath + "cars.txt"));
-    if (carFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (QFile carFile(QString::fromStdString(dataPath + "cars.txt")); carFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&carFile);
         for (const auto& car : cars) {
             out << QString::fromStdString(CarSerializer::toString(car)) << "\n";

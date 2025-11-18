@@ -56,12 +56,12 @@ void MainWindow::setupUI() {
     setupCarsGrid();
     
     // Create wrapper widgets for tabs with buttons
-    QWidget* carsTabWidget = new QWidget;
-    QVBoxLayout* carsTabLayout = new QVBoxLayout(carsTabWidget);
+    auto* carsTabWidget = new QWidget;
+    auto* carsTabLayout = new QVBoxLayout(carsTabWidget);
     carsTabLayout->setContentsMargins(0, 0, 0, 0);
     carsTabLayout->setSpacing(0);
     
-    QHBoxLayout* carsButtonLayout = new QHBoxLayout;
+    auto* carsButtonLayout = new QHBoxLayout;
     carsButtonLayout->setContentsMargins(10, 10, 10, 10);
     carsButtonLayout->addStretch();
     addCarButton = new QPushButton("+ Add Car");
@@ -75,12 +75,12 @@ void MainWindow::setupUI() {
     carsTabLayout->addLayout(carsButtonLayout);
     carsTabLayout->addWidget(carsScrollArea);
     
-    QWidget* clientsTabWidget = new QWidget;
-    QVBoxLayout* clientsTabLayout = new QVBoxLayout(clientsTabWidget);
+    auto* clientsTabWidget = new QWidget;
+    auto* clientsTabLayout = new QVBoxLayout(clientsTabWidget);
     clientsTabLayout->setContentsMargins(0, 0, 0, 0);
     clientsTabLayout->setSpacing(0);
     
-    QHBoxLayout* clientsButtonLayout = new QHBoxLayout;
+    auto* clientsButtonLayout = new QHBoxLayout;
     clientsButtonLayout->setContentsMargins(10, 10, 10, 10);
     clientsButtonLayout->addStretch();
     addClientButton = new QPushButton("+ Add Client");
@@ -94,12 +94,12 @@ void MainWindow::setupUI() {
     clientsTabLayout->addLayout(clientsButtonLayout);
     clientsTabLayout->addWidget(clientsTable);
     
-    QWidget* salesTabWidget = new QWidget;
-    QVBoxLayout* salesTabLayout = new QVBoxLayout(salesTabWidget);
+    auto* salesTabWidget = new QWidget;
+    auto* salesTabLayout = new QVBoxLayout(salesTabWidget);
     salesTabLayout->setContentsMargins(0, 0, 0, 0);
     salesTabLayout->setSpacing(0);
     
-    QHBoxLayout* salesButtonLayout = new QHBoxLayout;
+    auto* salesButtonLayout = new QHBoxLayout;
     salesButtonLayout->setContentsMargins(10, 10, 10, 10);
     salesButtonLayout->addStretch();
     QPushButton* salesReportButton = new QPushButton("📊 Sales Report");
@@ -113,7 +113,7 @@ void MainWindow::setupUI() {
     salesTabLayout->addLayout(salesButtonLayout);
     salesTabLayout->addWidget(salesTable);
     
-    QTabWidget* tabWidget = new QTabWidget;
+    auto* tabWidget = new QTabWidget;
     tabWidget->addTab(carsTabWidget, "🚗 Cars");
     tabWidget->addTab(clientsTabWidget, "👨🏻‍💼 Clients");
     tabWidget->addTab(salesTabWidget, "🏷️ Sales");
@@ -196,8 +196,8 @@ void MainWindow::populateCarsGrid() {
         connect(card, &CarCardWidget::sellRequested, this, &MainWindow::makeSaleForCar);
         connect(card, &CarCardWidget::reserveRequested, this, &MainWindow::reserveCarForCard);
         
-        int row = i / columnsPerRow;
-        int col = i % columnsPerRow;
+        int row = static_cast<int>(i) / columnsPerRow;
+        int col = static_cast<int>(i) % columnsPerRow;
         carsGridLayout->addWidget(card, row, col);
         
         carCards.push_back(card);

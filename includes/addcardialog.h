@@ -30,7 +30,7 @@ private:
     
     QGroupBox* optionsGroup;
     QVBoxLayout* optionsLayout;
-    std::map<std::string, QCheckBox*> optionCheckboxes;
+    std::map<std::string, QCheckBox*, std::less<>> optionCheckboxes;
     
     QLabel* imagePreviewLabel;
     QLabel* totalPriceLabel;
@@ -40,7 +40,7 @@ private:
     QString getImagePathForBrandModel(const QString& brand, const QString& model) const;
 
 public:
-    AddCarDialog(QWidget* parent = nullptr);
+    explicit AddCarDialog(QWidget* parent = nullptr);
     
     Car getCar() const;
 

@@ -32,14 +32,15 @@ bool SaleRepository::loadFromFile() {
     }
     
     sales.clear();
-    QFile saleFile(QString::fromStdString(dataPath + "sales.txt"));
-    if (saleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (QFile saleFile(QString::fromStdString(dataPath + "sales.txt")); saleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&saleFile);
         while (!in.atEnd()) {
             QString line = in.readLine();
             if (!line.isEmpty()) {
                 try {
                     sales.push_back(Sale::fromString(line.toStdString()));
+                } catch (const std::invalid_argument& e) {
+                    qCritical() << "Error parsing sale (invalid argument): " << e.what();
                 } catch (const std::exception& e) {
                     qCritical() << "Error parsing sale: " << e.what();
                 }
@@ -57,8 +58,7 @@ bool SaleRepository::saveToFile() const {
         return false;
     }
     
-    QFile saleFile(QString::fromStdString(dataPath + "sales.txt"));
-    if (saleFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (QFile saleFile(QString::fromStdString(dataPath + "sales.txt")); saleFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&saleFile);
         for (const auto& sale : sales) {
             out << QString::fromStdString(sale.toString()) << "\n";

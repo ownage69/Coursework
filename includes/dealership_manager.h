@@ -13,10 +13,11 @@
 
 class DealershipManager {
 private:
-    CarRepository carRepository;
-    ClientRepository clientRepository;
-    SaleRepository saleRepository;
-    bool dataLoaded;
+    static constexpr const char* DEFAULT_DATA_PATH = "D:/Labs/3sem/labsBSUIR3rdTerm/coursework/";
+    CarRepository carRepository{DEFAULT_DATA_PATH};
+    ClientRepository clientRepository{DEFAULT_DATA_PATH};
+    SaleRepository saleRepository{DEFAULT_DATA_PATH};
+    bool dataLoaded{false};
 
 public:
     DealershipManager();
@@ -33,7 +34,7 @@ public:
     bool makeSaleWithCar(const Car& carWithOptions, size_t carIndex, size_t clientIndex, double originalPrice, double finalPrice, double discount);
     
     bool loadData();
-    bool saveData();
+    bool saveData() const;
     
     bool loadDataFromFiles();
     bool saveDataToFiles();

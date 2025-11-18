@@ -184,8 +184,8 @@ void SearchDialog::performSearch() {
             size_t cardIndex = std::distance(allCars.begin(), it);
             CarCardWidget* card = new CarCardWidget(results[i], cardIndex);
             
-            int row = i / columnsPerRow;
-            int col = i % columnsPerRow;
+            int row = static_cast<int>(i) / columnsPerRow;
+            int col = static_cast<int>(i) % columnsPerRow;
             resultsGridLayout->addWidget(card, row, col);
             
             resultCards.push_back(card);
@@ -193,8 +193,8 @@ void SearchDialog::performSearch() {
             size_t cardIndex = i;
             CarCardWidget* card = new CarCardWidget(results[i], cardIndex);
             
-            int row = i / columnsPerRow;
-            int col = i % columnsPerRow;
+            int row = static_cast<int>(i) / columnsPerRow;
+            int col = static_cast<int>(i) % columnsPerRow;
             resultsGridLayout->addWidget(card, row, col);
             
             resultCards.push_back(card);

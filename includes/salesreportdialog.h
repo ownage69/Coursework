@@ -27,7 +27,7 @@ private:
     void exportToWord();
 
 public:
-    SalesReportDialog(DealershipManager* manager, QWidget* parent = nullptr);
+    explicit SalesReportDialog(DealershipManager* manager, QWidget* parent = nullptr);
 
 private slots:
     void onGenerateClicked();
