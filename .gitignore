@@ -8,7 +8,9 @@
 !coursework.pro
 !resources.qrc
 !sonar-project.properties
+!.github/
 
-# Внунти папок тоже разрешить всё
+# Внутри папок тоже разрешить всё
 !src/**
 !includes/**
+!.github/**
