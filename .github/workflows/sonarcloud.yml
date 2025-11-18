@@ -22,7 +22,7 @@ jobs:
           sudo apt-get install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools build-essential
       
       - name: Generate Makefile with qmake
-        run: qmake src/coursework.pro -o Makefile  # Указываем правильный путь и имя файла .pro
+        run: qmake coursework.pro -o Makefile  # Правильный путь и имя файла .pro (в корне)
       
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
