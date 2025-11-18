@@ -13,6 +13,7 @@
 #include "reservationdialog.h"
 #include "editcardialog.h"
 #include "carcardwidget.h"
+#include "salesreportdialog.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     qDebug() << "MainWindow constructor called";
@@ -49,17 +50,73 @@ void MainWindow::setupUI() {
     
     mainLayout->addWidget(titleWidget);
     
-    setupToolBar();
-    
     clientsTable = new QTableView;
     salesTable = new QTableView;
     
     setupCarsGrid();
     
+    // Create wrapper widgets for tabs with buttons
+    QWidget* carsTabWidget = new QWidget;
+    QVBoxLayout* carsTabLayout = new QVBoxLayout(carsTabWidget);
+    carsTabLayout->setContentsMargins(0, 0, 0, 0);
+    carsTabLayout->setSpacing(0);
+    
+    QHBoxLayout* carsButtonLayout = new QHBoxLayout;
+    carsButtonLayout->setContentsMargins(10, 10, 10, 10);
+    carsButtonLayout->addStretch();
+    addCarButton = new QPushButton("+ Add Car");
+    addCarButton->setStyleSheet(
+        "QPushButton { background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif; }"
+        "QPushButton:hover { background-color: #45a049; }"
+        "QPushButton:pressed { background-color: #3d8b40; }"
+    );
+    connect(addCarButton, &QPushButton::clicked, this, &MainWindow::addCar);
+    carsButtonLayout->addWidget(addCarButton);
+    carsTabLayout->addLayout(carsButtonLayout);
+    carsTabLayout->addWidget(carsScrollArea);
+    
+    QWidget* clientsTabWidget = new QWidget;
+    QVBoxLayout* clientsTabLayout = new QVBoxLayout(clientsTabWidget);
+    clientsTabLayout->setContentsMargins(0, 0, 0, 0);
+    clientsTabLayout->setSpacing(0);
+    
+    QHBoxLayout* clientsButtonLayout = new QHBoxLayout;
+    clientsButtonLayout->setContentsMargins(10, 10, 10, 10);
+    clientsButtonLayout->addStretch();
+    addClientButton = new QPushButton("+ Add Client");
+    addClientButton->setStyleSheet(
+        "QPushButton { background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif; }"
+        "QPushButton:hover { background-color: #45a049; }"
+        "QPushButton:pressed { background-color: #3d8b40; }"
+    );
+    connect(addClientButton, &QPushButton::clicked, this, &MainWindow::addClient);
+    clientsButtonLayout->addWidget(addClientButton);
+    clientsTabLayout->addLayout(clientsButtonLayout);
+    clientsTabLayout->addWidget(clientsTable);
+    
+    QWidget* salesTabWidget = new QWidget;
+    QVBoxLayout* salesTabLayout = new QVBoxLayout(salesTabWidget);
+    salesTabLayout->setContentsMargins(0, 0, 0, 0);
+    salesTabLayout->setSpacing(0);
+    
+    QHBoxLayout* salesButtonLayout = new QHBoxLayout;
+    salesButtonLayout->setContentsMargins(10, 10, 10, 10);
+    salesButtonLayout->addStretch();
+    QPushButton* salesReportButton = new QPushButton("📊 Sales Report");
+    salesReportButton->setStyleSheet(
+        "QPushButton { background-color: #2196f3; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif; }"
+        "QPushButton:hover { background-color: #1976d2; }"
+        "QPushButton:pressed { background-color: #1565c0; }"
+    );
+    connect(salesReportButton, &QPushButton::clicked, this, &MainWindow::showSalesReport);
+    salesButtonLayout->addWidget(salesReportButton);
+    salesTabLayout->addLayout(salesButtonLayout);
+    salesTabLayout->addWidget(salesTable);
+    
     QTabWidget* tabWidget = new QTabWidget;
-    tabWidget->addTab(carsScrollArea, "🚗 Cars");
-    tabWidget->addTab(clientsTable, "👨🏻‍💼 Clients");
-    tabWidget->addTab(salesTable, "🏷️ Sales");
+    tabWidget->addTab(carsTabWidget, "🚗 Cars");
+    tabWidget->addTab(clientsTabWidget, "👨🏻‍💼 Clients");
+    tabWidget->addTab(salesTabWidget, "🏷️ Sales");
     
     mainLayout->addWidget(tabWidget);
     
@@ -72,13 +129,6 @@ void MainWindow::setupUI() {
         "QTableView::item:selected { background-color: #e3f2fd; color: #1976d2; }"
         "QTableView::item:alternate { background-color: #fafafa; }"
         "QHeaderView::section { background-color: #f5f5f5; color: #555555; padding: 12px 8px; border: none; border-bottom: 2px solid #2196f3; font-weight: bold; font-size: 13px; }"
-        "QToolBar { background-color: #f8f8f8; border: none; border-bottom: 1px solid #e0e0e0; padding: 5px; }"
-        "QToolButton { background-color: #2196f3; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; }"
-        "QToolButton:hover { background-color: #1976d2; }"
-        "QToolButton:pressed { background-color: #1565c0; }"
-        "QMenu { background-color: #ffffff; color: #333333; border: 1px solid #e0e0e0; border-radius: 4px; padding: 4px; }"
-        "QMenu::item { background-color: transparent; color: #333333; padding: 8px 24px; border-radius: 3px; }"
-        "QMenu::item:selected { background-color: #e3f2fd; color: #1976d2; }"
         "QTabWidget::pane { border: 1px solid #e0e0e0; background-color: #ffffff; border-top: none; }"
         "QTabBar::tab { background-color: #f5f5f5; color: #666666; padding: 12px 24px; margin-right: 2px; border: 1px solid #e0e0e0; border-bottom: none; border-top-left-radius: 6px; border-top-right-radius: 6px; font-size: 14px; }"
         "QTabBar::tab:selected { background-color: #ffffff; color: #2196f3; border-bottom: 2px solid #2196f3; font-weight: bold; }"
@@ -123,56 +173,6 @@ void MainWindow::setupTables() {
     salesTable->sortByColumn(0, Qt::DescendingOrder);
 }
 
-void MainWindow::setupToolBar() {
-    qDebug() << "setupToolBar: Creating toolbar...";
-    toolBar = addToolBar("Main Toolbar");
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    
-    operationsButton = new QToolButton;
-    operationsButton->setText("Actions");
-    operationsButton->setPopupMode(QToolButton::InstantPopup);
-    operationsButton->setMenu(createOperationsMenu());
-    toolBar->addWidget(operationsButton);
-}
-
-QMenu* MainWindow::createOperationsMenu() {
-    QMenu* menu = new QMenu;
-    
-    QAction* addCarAction = menu->addAction("Add Car");
-    addCarAction->setIcon(QIcon::fromTheme("document-new"));
-    connect(addCarAction, &QAction::triggered, this, &MainWindow::addCar);
-    
-    QAction* addClientAction = menu->addAction("Add Client");
-    addClientAction->setIcon(QIcon::fromTheme("contact-new"));
-    connect(addClientAction, &QAction::triggered, this, &MainWindow::addClient);
-    
-    QAction* makeSaleAction = menu->addAction("Make Sale");
-    makeSaleAction->setIcon(QIcon::fromTheme("emblem-money"));
-    connect(makeSaleAction, &QAction::triggered, this, &MainWindow::makeSale);
-    
-    menu->addSeparator();
-    
-    QAction* reserveCarAction = menu->addAction("Reserve Car");
-    reserveCarAction->setIcon(QIcon::fromTheme("emblem-shared"));
-    connect(reserveCarAction, &QAction::triggered, this, &MainWindow::reserveCar);
-    
-    
-    QAction* deleteClientAction = menu->addAction("Delete Client");
-    deleteClientAction->setIcon(QIcon::fromTheme("edit-delete"));
-    connect(deleteClientAction, &QAction::triggered, this, &MainWindow::deleteClient);
-    
-    QAction* deleteSaleAction = menu->addAction("Delete Sale");
-    deleteSaleAction->setIcon(QIcon::fromTheme("edit-delete"));
-    connect(deleteSaleAction, &QAction::triggered, this, &MainWindow::deleteSale);
-    
-    menu->addSeparator();
-    
-    QAction* searchAction = menu->addAction("Search Cars");
-    searchAction->setIcon(QIcon::fromTheme("edit-find"));
-    connect(searchAction, &QAction::triggered, this, &MainWindow::searchCars);
-    
-    return menu;
-}
 
 void MainWindow::populateCarsGrid() {
     qDebug() << "populateCarsGrid: Clearing existing cards...";
@@ -463,6 +463,11 @@ void MainWindow::deleteSale() {
             QMessageBox::warning(this, "Error", "Failed to delete sale!");
         }
     }
+}
+
+void MainWindow::showSalesReport() {
+    SalesReportDialog dialog(&manager, this);
+    dialog.exec();
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

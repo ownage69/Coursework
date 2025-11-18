@@ -21,8 +21,8 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
     }
     
     for (size_t i = 0; i < cars.size(); ++i) {
-        std::string carInfo = cars[i].getBrand() + " " + cars[i].getModel() + " (Rating: " + 
-                             QString::number(cars[i].getAverageRating(), 'f', 1).toStdString() + ")";
+        std::string carInfo = cars[i].getBrand() + " " + cars[i].getModel() + " (" + 
+                             std::to_string(cars[i].getYear()) + ")";
         carCombo->addItem(QString::fromStdString(carInfo));
     }
     

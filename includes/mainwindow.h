@@ -8,10 +8,6 @@
 #include <QFormLayout>
 #include <QPushButton>
 #include <QLabel>
-#include <QToolBar>
-#include <QToolButton>
-#include <QMenu>
-#include <QAction>
 #include <QMessageBox>
 #include <QDebug>
 #include <QHeaderView>
@@ -19,6 +15,7 @@
 #include <QScrollArea>
 #include <QWidget>
 #include <QCloseEvent>
+#include <QTabWidget>
 #include <vector>
 #include "dealership_manager.h"
 #include "addcardialog.h"
@@ -46,17 +43,15 @@ private:
     QGridLayout* carsGridLayout;
     std::vector<CarCardWidget*> carCards;
     
-    QToolBar* toolBar;
-    QToolButton* operationsButton;
     QLabel* inventoryLabel;
+    QPushButton* addCarButton;
+    QPushButton* addClientButton;
     
     PriceDelegate* priceDelegate;
     
     void setupUI();
     void setupTables();
     void setupCarsGrid();
-    void setupToolBar();
-    QMenu* createOperationsMenu();
     
     void populateCarsGrid();
     void populateClientsTable();
@@ -80,6 +75,7 @@ private slots:
     void deleteCar(int index);
     void deleteClient();
     void deleteSale();
+    void showSalesReport();
 
 protected:
     void closeEvent(QCloseEvent* event) override;

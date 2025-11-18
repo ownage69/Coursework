@@ -1,4 +1,5 @@
 #include "sale.h"
+#include "car_serializer.h"
 #include <iostream>
 #include <sstream>
 #include <ctime>
@@ -34,7 +35,7 @@ void Sale::display() const {
 
 std::string Sale::toString() const {
     std::stringstream ss;
-    ss << car.toString() << "|" << client.toString() << "|" << date << "|" << originalPrice << "|" << finalPrice << "|" << discount1 << "|" << discount2;
+    ss << CarSerializer::toString(car) << "|" << client.toString() << "|" << date << "|" << originalPrice << "|" << finalPrice << "|" << discount1 << "|" << discount2;
     return ss.str();
 }
 
@@ -47,7 +48,7 @@ Sale Sale::fromString(std::string data) {
     }
     if (parts.size() == 6) {
         // Old format: car|client|date|price|discount1|discount2
-        Car car = Car::fromString(parts[0]);
+        Car car = CarSerializer::fromString(parts[0]);
         Client client = Client::fromString(parts[1]);
         std::string date = parts[2];
         double price = std::stod(parts[3]);
@@ -56,7 +57,7 @@ Sale Sale::fromString(std::string data) {
         return Sale(car, client, date, price, price, discount1, discount2);  // Assume original = final
     } else if (parts.size() == 7) {
         // New format: car|client|date|originalPrice|finalPrice|discount1|discount2
-        Car car = Car::fromString(parts[0]);
+        Car car = CarSerializer::fromString(parts[0]);
         Client client = Client::fromString(parts[1]);
         std::string date = parts[2];
         double originalPrice = std::stod(parts[3]);

@@ -4,16 +4,19 @@
 #include "car.h"
 #include "client.h"
 #include "sale.h"
+#include "car_repository.h"
+#include "client_repository.h"
+#include "sale_repository.h"
+#include "sale_service.h"
+#include "inventory_service.h"
 #include <QCoreApplication>
 
 class DealershipManager {
 private:
-    std::vector<Car> cars;
-    std::vector<Client> clients;
-    std::vector<Sale> sales;
+    CarRepository carRepository;
+    ClientRepository clientRepository;
+    SaleRepository saleRepository;
     bool dataLoaded;
-    
-    std::string getCurrentDate() const;
 
 public:
     DealershipManager();
@@ -28,8 +31,6 @@ public:
     
     bool makeSale(size_t carIndex, size_t clientIndex, double originalPrice, double finalPrice, double discount);
     bool makeSaleWithCar(const Car& carWithOptions, size_t carIndex, size_t clientIndex, double originalPrice, double finalPrice, double discount);
-    
-    double calculateDiscountForSale(const Client& client, const Car& car) const;
     
     bool loadData();
     bool saveData();
@@ -55,4 +56,6 @@ public:
     std::vector<Car> searchCarsByColor(const std::string& color) const;
     std::vector<Car> searchCarsByHorsepower(int minHp, int maxHp) const;
     std::vector<Car> searchCarsByTransmission(const std::string& transmission) const;
+    
+    double calculateDiscountForSale(const Client& client, const Car& car) const;
 };
