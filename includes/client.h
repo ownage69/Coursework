@@ -9,17 +9,17 @@ private:
 
 public:
     Client();
-    Client(std::string fullName, std::string phone, double balance);
+    Client(const std::string& fullName, const std::string& phone, double balance);
     
     std::string getFullName() const;
     std::string getPhone() const;
     double getBalance() const;
     
-    void setFullName(std::string fullName);
-    void setPhone(std::string phone);
+    void setFullName(const std::string& fullName);
+    void setPhone(const std::string& phone);
     void setBalance(double balance);
     
     void display() const;
     std::string toString() const;
-    static Client fromString(std::string data);
+    static Client fromString(const std::string& data);
 };

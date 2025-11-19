@@ -32,16 +32,16 @@ void MainWindow::setupUI() {
     setWindowTitle("Car Dealership Management System");
     setMinimumSize(1200, 800);
     
-    QWidget* centralWidget = new QWidget;
+    auto* centralWidget = new QWidget;
     setCentralWidget(centralWidget);
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
+    auto* mainLayout = new QVBoxLayout(centralWidget);
     
-    QWidget* titleWidget = new QWidget;
+    auto* titleWidget = new QWidget;
     titleWidget->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #f0f0f0, stop:1 #ffffff); border-bottom: 2px solid #e0e0e0; padding: 15px;");
-    QLabel* titleLabel = new QLabel("Car Dealership Management System");
+    auto* titleLabel = new QLabel("Car Dealership Management System");
     titleLabel->setStyleSheet("font-size: 24px; font-weight: bold; color: #2c3e50; font-family: 'Segoe UI', Arial, sans-serif;");
-    QHBoxLayout* titleLayout = new QHBoxLayout(titleWidget);
+    auto* titleLayout = new QHBoxLayout(titleWidget);
     titleLayout->addWidget(titleLabel);
     titleLayout->addStretch();
     inventoryLabel = new QLabel("Total Cars in Stock: 0 (0 unique models)");
@@ -216,9 +216,12 @@ void MainWindow::populateClientsTable() {
     qDebug() << "populateClientsTable: Populating" << clients.size() << "clients...";
     for (size_t i = 0; i < clients.size(); ++i) {
         QList<QStandardItem*> row;
-        row << new QStandardItem(QString::fromStdString(clients[i].getFullName()))
-            << new QStandardItem(QString::fromStdString(clients[i].getPhone()))
-            << new QStandardItem("$" + QString::number(clients[i].getBalance(), 'f', 2));
+        auto* c1 = new QStandardItem(QString::fromStdString(clients[i].getFullName()));
+        auto* c2 = new QStandardItem(QString::fromStdString(clients[i].getPhone()));
+        auto* c3 = new QStandardItem("$" + QString::number(clients[i].getBalance(), 'f', 2));
+        row << c1;
+        row << c2;
+        row << c3;
         clientsModel->appendRow(row);
     }
     qDebug() << "populateClientsTable completed";
@@ -254,13 +257,20 @@ void MainWindow::populateSalesTable() {
             optionsStr = "None";
         }
         
-        row << new QStandardItem(QString::fromStdString(sales[i].getDate()))
-            << new QStandardItem(QString::fromStdString(carInfo))
-            << new QStandardItem(QString::fromStdString(clientInfo))
-            << new QStandardItem("$" + QString::number(sales[i].getOriginalPrice(), 'f', 2))
-            << new QStandardItem(QString("%1%").arg(sales[i].getDiscountPercentage(), 0, 'f', 1))
-            << new QStandardItem("$" + QString::number(sales[i].getFinalPrice(), 'f', 2))
-            << new QStandardItem(QString::fromStdString(optionsStr));
+        auto* s1 = new QStandardItem(QString::fromStdString(sales[i].getDate()));
+        auto* s2 = new QStandardItem(QString::fromStdString(carInfo));
+        auto* s3 = new QStandardItem(QString::fromStdString(clientInfo));
+        auto* s4 = new QStandardItem("$" + QString::number(sales[i].getOriginalPrice(), 'f', 2));
+        auto* s5 = new QStandardItem(QString("%1%").arg(sales[i].getDiscountPercentage(), 0, 'f', 1));
+        auto* s6 = new QStandardItem("$" + QString::number(sales[i].getFinalPrice(), 'f', 2));
+        auto* s7 = new QStandardItem(QString::fromStdString(optionsStr));
+        row << s1;
+        row << s2;
+        row << s3;
+        row << s4;
+        row << s5;
+        row << s6;
+        row << s7;
         salesModel->appendRow(row);
     }
     qDebug() << "populateSalesTable completed";

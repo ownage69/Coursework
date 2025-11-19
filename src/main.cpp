@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
         window.show();
         qDebug() << "MainWindow shown, starting event loop";
         
-        return app.exec();
+        return QApplication::exec();
         
     } catch (const std::exception& e) {
         QMessageBox::critical(nullptr, "Application Error", 

@@ -4,6 +4,7 @@
 #include <set>
 #include <vector>
 #include <utility>
+#include <string_view>
 
 class Car {
 private:
@@ -42,24 +43,24 @@ public:
     const std::map<std::string, double, std::less<>>& getOptions() const;
     double getTotalPrice() const;
     
-    void setBrand(const std::string& newBrand);
-    void setModel(const std::string& newModel);
+    void setBrand(std::string_view newBrand);
+    void setModel(std::string_view newModel);
     void setYear(int year);
     void setPrice(double price);
-    void setColor(const std::string& newColor);
+    void setColor(std::string_view newColor);
     void setHorsepower(int horsepower);
-    void setTransmission(const std::string& newTransmission);
+    void setTransmission(std::string_view newTransmission);
     void setReserved(bool reserved);
-    void setReservedBy(const std::string& newReservedBy);
+    void setReservedBy(std::string_view newReservedBy);
     void setStock(int stock);
-    void setVin(const std::string& newVin);
-    void setImagePath(const std::string& newImagePath);
+    void setVin(std::string_view newVin);
+    void setImagePath(std::string_view newImagePath);
     void addOption(const std::string& option, double price);
     void removeOption(const std::string& option);
     
     void display() const;
     std::string toString() const;
-    static Car fromString(std::string data);
+    static Car fromString(const std::string& data);
     
     static bool isValidBrand(const std::string& brand);
     static bool isValidModelForBrand(const std::string& brand, const std::string& model);
@@ -67,5 +68,5 @@ public:
     static std::string getValidModelInput(const std::string& brand);
     static std::string getValidColorInput();
     static std::string getValidTransmissionInput();
-    static const std::map<std::string, double, std::less<>> getAvailableOptions();
+    static std::map<std::string, double, std::less<>> getAvailableOptions();
 };

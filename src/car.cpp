@@ -25,7 +25,7 @@ Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     auto time = std::chrono::system_clock::to_time_t(now);
     std::stringstream ss;
     std::mt19937 rng(std::random_device{}());
-    std::uniform_int_distribution<int> dist(0, 9999);
+    std::uniform_int_distribution dist(0, 9999);
     ss << "VIN" << time << dist(rng);
     vin = ss.str();
 }
@@ -49,24 +49,24 @@ const std::map<std::string, double, std::less<>>& Car::getOptions() const { retu
 
 double Car::getTotalPrice() const {
     double total = price;
-    for (const auto& option : options) {
-        total += option.second;
+    for (const auto& [optName, optPrice] : options) {
+        total += optPrice;
     }
     return total;
 }
 
-void Car::setBrand(const std::string& newBrand) { this->brand = newBrand; }
-void Car::setModel(const std::string& newModel) { this->model = newModel; }
+void Car::setBrand(std::string_view newBrand) { this->brand = std::string(newBrand); }
+void Car::setModel(std::string_view newModel) { this->model = std::string(newModel); }
 void Car::setYear(int year) { this->year = year; }
 void Car::setPrice(double price) { this->price = price; }
-void Car::setColor(const std::string& newColor) { this->color = newColor; }
+void Car::setColor(std::string_view newColor) { this->color = std::string(newColor); }
 void Car::setHorsepower(int horsepower) { this->horsepower = horsepower; }
-void Car::setTransmission(const std::string& newTransmission) { this->transmission = newTransmission; }
+void Car::setTransmission(std::string_view newTransmission) { this->transmission = std::string(newTransmission); }
 void Car::setReserved(bool reserved) { this->reserved = reserved; }
-void Car::setReservedBy(const std::string& newReservedBy) { this->reservedBy = newReservedBy; }
+void Car::setReservedBy(std::string_view newReservedBy) { this->reservedBy = std::string(newReservedBy); }
 void Car::setStock(int stock) { this->stock = stock; }
-void Car::setVin(const std::string& newVin) { this->vin = newVin; }
-void Car::setImagePath(const std::string& newImagePath) { this->imagePath = newImagePath; }
+void Car::setVin(std::string_view newVin) { this->vin = std::string(newVin); }
+void Car::setImagePath(std::string_view newImagePath) { this->imagePath = std::string(newImagePath); }
 
 void Car::addOption(const std::string& option, double price) {
     options[option] = price;
@@ -108,9 +108,21 @@ std::string Car::toString() const {
     return result;
 }
 
-Car Car::fromString(std::string data) {
+Car Car::fromString(const std::string& data) {
     std::stringstream ss(data);
-    std::string brand, model, yearStr, priceStr, color, horsepowerStr, transmission, reservedStr, reservedBy, stockStr, vin, imagePath, optionsStr;
+    std::string brand;
+    std::string model;
+    std::string yearStr;
+    std::string priceStr;
+    std::string color;
+    std::string horsepowerStr;
+    std::string transmission;
+    std::string reservedStr;
+    std::string reservedBy;
+    std::string stockStr;
+    std::string vin;
+    std::string imagePath;
+    std::string optionsStr;
     
     std::getline(ss, brand, ',');
     std::getline(ss, model, ',');
@@ -213,8 +225,7 @@ bool Car::isValidBrand(const std::string& brand) {
 }
 
 bool Car::isValidModelForBrand(const std::string& brand, const std::string& model) {
-    auto it = validBrandsAndModels.find(brand);
-    if (it != validBrandsAndModels.end()) {
+    if (auto it = validBrandsAndModels.find(brand); it != validBrandsAndModels.end()) {
         return it->second.find(model) != it->second.end();
     }
     return false;
@@ -238,8 +249,7 @@ std::string Car::getValidBrandInput() {
 
 std::string Car::getValidModelInput(const std::string& brand) {
     std::cout << "Available models for " << brand << ": ";
-    auto it = validBrandsAndModels.find(brand);
-    if (it != validBrandsAndModels.end()) {
+    if (auto it = validBrandsAndModels.find(brand); it != validBrandsAndModels.end()) {
         for (const auto& model : it->second) {
             std::cout << model << " ";
         }
@@ -284,7 +294,7 @@ std::string Car::getValidTransmissionInput() {
     }
 }
 
-const std::map<std::string, double, std::less<>> Car::getAvailableOptions() {
+std::map<std::string, double, std::less<>> Car::getAvailableOptions() {
     return {
         {"Leather Seats", 1000.0},
         {"Navigation System", 500.0},
