@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <string_view>
 #include <vector>
 #include "car.h"
 #include "client.h"
@@ -29,7 +30,7 @@ public:
     
     void setCar(const Car& newCar);
     void setClient(const Client& newClient);
-    void setDate(const std::string& newDate);
+    void setDate(std::string_view newDate);
     void setOriginalPrice(double newOriginalPrice);
     void setFinalPrice(double newFinalPrice);
     void setDiscount1(double newDiscount1);
@@ -37,7 +38,7 @@ public:
     
     void display() const;
     std::string toString() const;
-    static Sale fromString(std::string data);
+    static Sale fromString(const std::string& data);
     
     static double calculateDiscount(const Client& client, std::string_view date, const std::vector<Sale>& previousSales);
     static bool isWinterMonth();

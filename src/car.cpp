@@ -24,9 +24,9 @@ Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     auto now = std::chrono::system_clock::now();
     auto time = std::chrono::system_clock::to_time_t(now);
     std::stringstream ss;
-    std::mt19937 rng(std::random_device{}());
-    std::uniform_int_distribution dist(0, 9999);
-    ss << "VIN" << time << dist(rng);
+    std::random_device rd;
+    unsigned int randPart = rd() % 10000;
+    ss << "VIN" << time << randPart;
     vin = ss.str();
 }
 
@@ -68,8 +68,8 @@ void Car::setStock(int newStock) { this->stock = newStock; }
 void Car::setVin(std::string_view newVin) { this->vin = std::string(newVin); }
 void Car::setImagePath(std::string_view newImagePath) { this->imagePath = std::string(newImagePath); }
 
-void Car::addOption(const std::string& option, double price) {
-    options[option] = price;
+void Car::addOption(const std::string& option, double optionPrice) {
+    options[option] = optionPrice;
 }
 
 void Car::removeOption(const std::string& option) {

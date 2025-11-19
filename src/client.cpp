@@ -13,7 +13,7 @@ double Client::getBalance() const { return balance; }
 
 void Client::setFullName(std::string_view newFullName) { this->fullName = std::string(newFullName); }
 void Client::setPhone(std::string_view newPhone) { this->phone = std::string(newPhone); }
-void Client::setBalance(double balance) { this->balance = balance; }
+void Client::setBalance(double newBalance) { this->balance = newBalance; }
 
 void Client::display() const {
     std::cout << "Full Name: " << fullName << std::endl;

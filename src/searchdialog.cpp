@@ -7,7 +7,21 @@
 #include "carcardwidget.h"
 
 SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent) 
-    : QDialog(parent), manager(manager) {
+    : QDialog(parent)
+    , manager(manager)
+    , searchTypeCombo(new QComboBox(this))
+    , brandCombo(new QComboBox(this))
+    , modelEdit(new QLineEdit(this))
+    , minPriceSpin(new QDoubleSpinBox(this))
+    , maxPriceSpin(new QDoubleSpinBox(this))
+    , colorCombo(new QComboBox(this))
+    , minHpSpin(new QSpinBox(this))
+    , maxHpSpin(new QSpinBox(this))
+    , transmissionCombo(new QComboBox(this))
+    , resultsScrollArea(new QScrollArea(this))
+    , resultsScrollContent(new QWidget(this))
+    , resultsGridLayout(new QGridLayout(resultsScrollContent))
+    , searchButton(new QPushButton("Search", this)) {
     setWindowTitle("Search Cars");
     setModal(true);
     resize(1000, 700);
@@ -31,37 +45,28 @@ SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent)
     
     auto* formLayout = new QFormLayout;
     
-    searchTypeCombo = new QComboBox;
     searchTypeCombo->addItems({"By Brand", "By Model", "By Price Range", "By Color", "By Horsepower Range", "By Transmission"});
     
-    brandCombo = new QComboBox;
     brandCombo->addItems({"BMW", "Audi", "Toyota", "Mercedes", "Ford", "Volkswagen", 
                          "Nissan", "Honda", "Hyundai", "Kia", "Lexus", "Mazda", 
                          "Renault", "Skoda", "Volvo", "Peugeot", "Chevrolet", 
                          "Subaru", "Tesla"});
     
-    modelEdit = new QLineEdit;
     
-    minPriceSpin = new QDoubleSpinBox;
     minPriceSpin->setRange(0, 1000000);
     minPriceSpin->setDecimals(2);
     
-    maxPriceSpin = new QDoubleSpinBox;
     maxPriceSpin->setRange(0, 1000000);
     maxPriceSpin->setDecimals(2);
     maxPriceSpin->setValue(100000);
     
-    colorCombo = new QComboBox;
     colorCombo->addItems({"Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Brown", "Purple"});
     
-    minHpSpin = new QSpinBox;
     minHpSpin->setRange(0, 2000);
     
-    maxHpSpin = new QSpinBox;
     maxHpSpin->setRange(0, 2000);
     maxHpSpin->setValue(1000);
     
-    transmissionCombo = new QComboBox;
     transmissionCombo->addItems({"Automatic", "Manual"});
     
     formLayout->addRow("Search Type:", searchTypeCombo);
@@ -77,7 +82,6 @@ SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent)
     mainLayout->addLayout(formLayout);
     
     auto* buttonLayout = new QHBoxLayout;
-    searchButton = new QPushButton("Search");
     auto* closeButton = new QPushButton("Close");
     
     buttonLayout->addWidget(searchButton);
@@ -86,12 +90,9 @@ SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent)
     
     mainLayout->addLayout(buttonLayout);
     
-    resultsScrollArea = new QScrollArea;
     resultsScrollArea->setWidgetResizable(true);
     resultsScrollArea->setStyleSheet("QScrollArea { border: 1px solid #e0e0e0; background-color: #f8f9fa; border-radius: 4px; }");
     
-    resultsScrollContent = new QWidget;
-    resultsGridLayout = new QGridLayout(resultsScrollContent);
     resultsGridLayout->setSpacing(20);
     resultsGridLayout->setContentsMargins(20, 20, 20, 20);
     
@@ -183,7 +184,7 @@ void SearchDialog::performSearch() {
         
         if (it != allCars.end()) {
             size_t cardIndex = std::distance(allCars.begin(), it);
-            CarCardWidget* card = new CarCardWidget(results[i], cardIndex);
+            auto* card = new CarCardWidget(results[i], cardIndex);
             
             int row = static_cast<int>(i) / columnsPerRow;
             int col = static_cast<int>(i) % columnsPerRow;
@@ -192,7 +193,7 @@ void SearchDialog::performSearch() {
             resultCards.push_back(card);
         } else {
             size_t cardIndex = i;
-            CarCardWidget* card = new CarCardWidget(results[i], cardIndex);
+            auto* card = new CarCardWidget(results[i], cardIndex);
             
             int row = static_cast<int>(i) / columnsPerRow;
             int col = static_cast<int>(i) % columnsPerRow;

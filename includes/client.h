@@ -18,7 +18,7 @@ public:
     
     void setFullName(std::string_view newFullName);
     void setPhone(std::string_view newPhone);
-    void setBalance(double balance);
+    void setBalance(double newBalance);
     
     void display() const;
     std::string toString() const;

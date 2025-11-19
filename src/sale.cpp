@@ -20,7 +20,7 @@ double Sale::getFinalPrice() const { return finalPrice; }
 
 void Sale::setCar(const Car& newCar) { this->car = newCar; }
 void Sale::setClient(const Client& newClient) { this->client = newClient; }
-void Sale::setDate(const std::string& newDate) { this->date = newDate; }
+void Sale::setDate(std::string_view newDate) { this->date = std::string(newDate); }
 void Sale::setOriginalPrice(double newOriginalPrice) { this->originalPrice = newOriginalPrice; }
 void Sale::setFinalPrice(double newFinalPrice) { this->finalPrice = newFinalPrice; }
 void Sale::setDiscount1(double newDiscount1) { this->discount1 = newDiscount1; }
@@ -41,7 +41,7 @@ std::string Sale::toString() const {
     return ss.str();
 }
 
-Sale Sale::fromString(std::string data) {
+Sale Sale::fromString(const std::string& data) {
     std::stringstream ss(data);
     std::string part;
     std::vector<std::string> parts;

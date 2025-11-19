@@ -342,8 +342,7 @@ void MainWindow::makeSale() {
 }
 
 void MainWindow::makeSaleForCar(int index) {
-    const auto& cars = manager.getCars();
-    if (index >= static_cast<int>(cars.size())) {
+    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
@@ -390,8 +389,7 @@ void MainWindow::reserveCar() {
 }
 
 void MainWindow::reserveCarForCard(int index) {
-    const auto& cars = manager.getCars();
-    if (index >= static_cast<int>(cars.size())) {
+    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
