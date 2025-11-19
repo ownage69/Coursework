@@ -242,19 +242,23 @@ void MainWindow::populateSalesTable() {
         
         // Build options string
         std::string optionsStr = "";
-        if (const auto& options = sale.getCar().getOptions(); !options.empty()) {
-            std::vector<std::string> optionNames;
-            optionNames.reserve(options.size());
-            for (const auto& [name, price] : options) {
-                optionNames.push_back(name);
+        {
+            // Copy to avoid dangling reference to temporary returned by getCar()
+            auto options = sale.getCar().getOptions();
+            if (!options.empty()) {
+                std::vector<std::string> optionNames;
+                optionNames.reserve(options.size());
+                for (const auto& [name, price] : options) {
+                    optionNames.push_back(name);
+                }
+                optionsStr = "[" + optionNames[0];
+                for (size_t j = 1; j < optionNames.size(); ++j) {
+                    optionsStr += ", " + optionNames[j];
+                }
+                optionsStr += "]";
+            } else {
+                optionsStr = "None";
             }
-            optionsStr = "[" + optionNames[0];
-            for (size_t j = 1; j < optionNames.size(); ++j) {
-                optionsStr += ", " + optionNames[j];
-            }
-            optionsStr += "]";
-        } else {
-            optionsStr = "None";
         }
         
         auto* s1 = new QStandardItem(QString::fromStdString(sale.getDate()));
@@ -349,7 +353,8 @@ void MainWindow::makeSale() {
 }
 
 void MainWindow::makeSaleForCar(int index) {
-    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
+    const auto& cars = manager.getCars();
+    if (index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
@@ -396,7 +401,8 @@ void MainWindow::reserveCar() {
 }
 
 void MainWindow::reserveCarForCard(int index) {
-    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
+    const auto& cars = manager.getCars();
+    if (index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
@@ -418,7 +424,8 @@ void MainWindow::reserveCarForCard(int index) {
 }
 
 void MainWindow::editCar(int index) {
-    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
+    const auto& cars = manager.getCars();
+    if (index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }

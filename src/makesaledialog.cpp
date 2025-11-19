@@ -137,12 +137,14 @@ void MakeSaleDialog::updatePriceInfo() {
     double basePrice = car.getTotalPrice();  // Includes car's options
     double optionsAdjustment = 0.0;
     
+    // Copy available options to avoid using iterators to a temporary container
+    const auto availableOptionsLocal = Car::getAvailableOptions();
     for (const auto& [name, checkbox] : optionCheckboxes) {
         bool isOnCar = car.getOptions().count(name) > 0;
         bool isChecked = checkbox->isChecked();
         
-        auto it = Car::getAvailableOptions().find(name);
-        if (it == Car::getAvailableOptions().end()) continue;
+        auto it = availableOptionsLocal.find(name);
+        if (it == availableOptionsLocal.end()) continue;
         
         double optionPrice = it->second;
         
@@ -241,11 +243,11 @@ Car MakeSaleDialog::getCarWithSelectedOptions() const {
     }
     
     // Add selected options
-    const auto& availableOptions = Car::getAvailableOptions();
+    const auto availableOptionsLocal2 = Car::getAvailableOptions();
     for (const auto& [name, checkbox] : optionCheckboxes) {
         if (checkbox->isChecked()) {
-            auto it = availableOptions.find(name);
-            if (it != availableOptions.end()) {
+            auto it = availableOptionsLocal2.find(name);
+            if (it != availableOptionsLocal2.end()) {
                 car.addOption(name, it->second);
             }
         }
