@@ -9,8 +9,6 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
     
     auto* mainLayout = new QVBoxLayout(this);
     
-    auto* formLayout = new QFormLayout;
-    
     carCombo = new QComboBox(this);
     
     const auto& cars = manager.getCars();
@@ -19,6 +17,8 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
         QMessageBox::warning(this, "Error", "No cars available!");
         return;
     }
+    
+    auto* formLayout = new QFormLayout;
     
     for (const auto& car : cars) {
         std::string carInfo = car.getBrand() + " " + car.getModel() + " (" + 

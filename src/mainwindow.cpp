@@ -102,7 +102,7 @@ void MainWindow::setupUI() {
     auto* salesButtonLayout = new QHBoxLayout;
     salesButtonLayout->setContentsMargins(10, 10, 10, 10);
     salesButtonLayout->addStretch();
-    QPushButton* salesReportButton = new QPushButton("📊 Sales Report");
+    auto* salesReportButton = new QPushButton("📊 Sales Report");
     salesReportButton->setStyleSheet(
         "QPushButton { background-color: #2196f3; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif; }"
         "QPushButton:hover { background-color: #1976d2; }"

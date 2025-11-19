@@ -40,7 +40,7 @@ void SalesReportDialog::setupUI() {
     
     dateLayout->addStretch();
     
-    QPushButton* generateButton = new QPushButton("Generate Report");
+    auto* generateButton = new QPushButton("Generate Report");
     generateButton->setStyleSheet(
         "QPushButton { background-color: #2196f3; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; }"
         "QPushButton:hover { background-color: #1976d2; }"
@@ -76,7 +76,7 @@ void SalesReportDialog::setupUI() {
     auto* buttonLayout = new QHBoxLayout;
     buttonLayout->addStretch();
     
-    QPushButton* exportExcelButton = new QPushButton("Export to Excel");
+    auto* exportExcelButton = new QPushButton("Export to Excel");
     exportExcelButton->setStyleSheet(
         "QPushButton { background-color: #4caf50; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; }"
         "QPushButton:hover { background-color: #45a049; }"
@@ -84,7 +84,7 @@ void SalesReportDialog::setupUI() {
     connect(exportExcelButton, &QPushButton::clicked, this, &SalesReportDialog::onExportExcelClicked);
     buttonLayout->addWidget(exportExcelButton);
     
-    QPushButton* exportWordButton = new QPushButton("Export to Word");
+    auto* exportWordButton = new QPushButton("Export to Word");
     exportWordButton->setStyleSheet(
         "QPushButton { background-color: #ff9800; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; }"
         "QPushButton:hover { background-color: #f57c00; }"
@@ -92,7 +92,7 @@ void SalesReportDialog::setupUI() {
     connect(exportWordButton, &QPushButton::clicked, this, &SalesReportDialog::onExportWordClicked);
     buttonLayout->addWidget(exportWordButton);
     
-    QPushButton* closeButton = new QPushButton("Close");
+    auto* closeButton = new QPushButton("Close");
     closeButton->setStyleSheet(
         "QPushButton { background-color: #757575; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; }"
         "QPushButton:hover { background-color: #616161; }"
