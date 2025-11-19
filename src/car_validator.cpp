@@ -15,7 +15,7 @@ static const std::map<std::string, std::set<std::string, std::less<>>, std::less
     {"Hyundai", {"Sonata", "Tucson", "Santa Fe", "Elantra", "Palisade"}}
 };
 
-const std::map<std::string, std::set<std::string>>& CarValidator::getValidBrandsAndModels() {
+const std::map<std::string, std::set<std::string, std::less<>>, std::less<>>& CarValidator::getValidBrandsAndModels() {
     return validBrandsAndModels;
 }
 
