@@ -53,16 +53,14 @@ jobs:
             echo "compile_commands.json not found!"
           fi
       
-      # Run the SonarCloud scanner (properties are read from sonar-project.properties).
-      # We do NOT pass the deprecated -Dsonar.cfamily.build-wrapper-output anymore.
-      # The project file already points analysis to bw-output/compile_commands.json.
+      # Run the Sonar scanner directly on the GitHub runner (Ubuntu with glibc),
+      # which is required by the C/C++ analyzer subprocess binaries.
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
         with:
           args: >
+            -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
             -Dsonar.verbose=true
