@@ -7,7 +7,11 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 
-AdminLoginDialog::AdminLoginDialog(QWidget* parent) : QDialog(parent) {
+AdminLoginDialog::AdminLoginDialog(QWidget* parent) 
+    : QDialog(parent)
+    , usernameEdit(new QLineEdit(this))
+    , passwordEdit(new QLineEdit(this))
+    , buttonBox(new QDialogButtonBox(this)) {
     setWindowTitle("Administrator Login");
     setModal(true);
     setFixedSize(700, 350);
@@ -43,14 +47,12 @@ AdminLoginDialog::AdminLoginDialog(QWidget* parent) : QDialog(parent) {
     auto* usernameLabel = new QLabel("Username:");
     usernameLabel->setStyleSheet("font-weight: 500; min-width: 120px;");
     usernameLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    usernameEdit = new QLineEdit;
     usernameEdit->setPlaceholderText("Enter administrator username");
     usernameEdit->setMinimumWidth(280);
 
     auto* passwordLabel = new QLabel("Password:");
     passwordLabel->setStyleSheet("font-weight: 500; min-width: 120px;");
     passwordLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    passwordEdit = new QLineEdit;
     passwordEdit->setPlaceholderText("Enter administrator password");
     passwordEdit->setEchoMode(QLineEdit::Password);
     passwordEdit->setMinimumWidth(280);
@@ -70,7 +72,6 @@ AdminLoginDialog::AdminLoginDialog(QWidget* parent) : QDialog(parent) {
     auto* cancelButton = new QPushButton("Cancel");
     cancelButton->setStyleSheet("QPushButton { background-color: #757575; } QPushButton:hover { background-color: #616161; }");
 
-    buttonBox = new QDialogButtonBox;
     auto* okButton = buttonBox->addButton("Login", QDialogButtonBox::AcceptRole);
     okButton->setDefault(true);
 

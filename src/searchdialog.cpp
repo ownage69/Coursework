@@ -150,9 +150,7 @@ void SearchDialog::performSearch() {
     resultCards.clear();
     
     std::vector<Car> results;
-    int searchType = searchTypeCombo->currentIndex();
-    
-    switch (searchType) {
+    switch (searchTypeCombo->currentIndex()) {
         case 0:
             results = manager.searchCarsByBrand(brandCombo->currentText().toStdString());
             break;
@@ -170,6 +168,8 @@ void SearchDialog::performSearch() {
             break;
         case 5:
             results = manager.searchCarsByTransmission(transmissionCombo->currentText().toStdString());
+            break;
+        default:
             break;
     }
     

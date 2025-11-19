@@ -3,7 +3,12 @@
 #include <QRegularExpression>
 #include <QPushButton>
 
-AddClientDialog::AddClientDialog(QWidget* parent) : QDialog(parent) {
+AddClientDialog::AddClientDialog(QWidget* parent) 
+    : QDialog(parent)
+    , fullNameEdit(new QLineEdit(this))
+    , phoneEdit(new QLineEdit(this))
+    , balanceSpin(new QDoubleSpinBox(this))
+    , buttonBox(new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this)) {
     setWindowTitle("Add Client");
     setModal(true);
     
@@ -11,17 +16,14 @@ AddClientDialog::AddClientDialog(QWidget* parent) : QDialog(parent) {
     
     auto* formLayout = new QFormLayout;
     
-    fullNameEdit = new QLineEdit;
     QRegularExpression nameRegExp("^[A-Za-z\\s\\-]+$");
     const QRegularExpressionValidator* nameValidator = new QRegularExpressionValidator(nameRegExp, this);
     fullNameEdit->setValidator(nameValidator);
     
-    phoneEdit = new QLineEdit;
     QRegularExpression phoneRegExp("^\\+?\\d{10,15}$");
     const QRegularExpressionValidator* phoneValidator = new QRegularExpressionValidator(phoneRegExp, this);
     phoneEdit->setValidator(phoneValidator);
     
-    balanceSpin = new QDoubleSpinBox;
     balanceSpin->setRange(0.01, 10000000);
     balanceSpin->setDecimals(2);
     
@@ -31,7 +33,6 @@ AddClientDialog::AddClientDialog(QWidget* parent) : QDialog(parent) {
     
     mainLayout->addLayout(formLayout);
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     if (auto* okButton = buttonBox->button(QDialogButtonBox::Ok); okButton) {
         okButton->setEnabled(false);
     }

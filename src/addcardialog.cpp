@@ -31,7 +31,22 @@ std::string generateVIN() {
     return vin;
 }
 
-AddCarDialog::AddCarDialog(QWidget* parent) : QDialog(parent) {
+AddCarDialog::AddCarDialog(QWidget* parent) 
+    : QDialog(parent)
+    , brandCombo(new QComboBox(this))
+    , modelCombo(new QComboBox(this))
+    , yearSpin(new QSpinBox(this))
+    , priceSpin(new QDoubleSpinBox(this))
+    , colorCombo(new QComboBox(this))
+    , horsepowerSpin(new QSpinBox(this))
+    , transmissionCombo(new QComboBox(this))
+    , stockSpin(new QSpinBox(this))
+    , vinEdit(new QLineEdit(this))
+    , optionsGroup(new QGroupBox("Optional Features", this))
+    , optionsLayout(new QVBoxLayout(optionsGroup))
+    , imagePreviewLabel(new QLabel(this))
+    , totalPriceLabel(new QLabel("Final Price: <span style='color: #28a745;'>$0.00</span>", this))
+    , buttonBox(new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this)) {
     setWindowTitle("Add Car");
     setModal(true);
     setStyleSheet(
@@ -60,49 +75,39 @@ AddCarDialog::AddCarDialog(QWidget* parent) : QDialog(parent) {
     
     auto* formLayout = new QFormLayout;
 
-    brandCombo = new QComboBox;
     brandCombo->addItems({"Toyota", "Honda", "Ford", "Chevrolet", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai"});
     formLayout->addRow("Brand:", brandCombo);
 
-    modelCombo = new QComboBox;
     formLayout->addRow("Model:", modelCombo);
 
-    yearSpin = new QSpinBox;
     yearSpin->setRange(1900, 2100);
     yearSpin->setValue(2023);
     formLayout->addRow("Year:", yearSpin);
 
-    priceSpin = new QDoubleSpinBox;
     priceSpin->setRange(0, 1000000);
     priceSpin->setSingleStep(1000);
     formLayout->addRow("Price ($):", priceSpin);
 
-    colorCombo = new QComboBox;
     colorCombo->addItems({"White", "Black", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Purple"});
     formLayout->addRow("Color:", colorCombo);
 
-    horsepowerSpin = new QSpinBox;
     horsepowerSpin->setRange(50, 1000);
     horsepowerSpin->setValue(200);
     formLayout->addRow("Horsepower:", horsepowerSpin);
 
-    transmissionCombo = new QComboBox;
     transmissionCombo->addItems({"Manual", "Automatic", "CVT"});
     formLayout->addRow("Transmission:", transmissionCombo);
 
-    stockSpin = new QSpinBox;
     stockSpin->setRange(1, 1000);
     stockSpin->setValue(1);
     formLayout->addRow("Stock:", stockSpin);
 
-    vinEdit = new QLineEdit;
     vinEdit->setReadOnly(true);
     vinEdit->setText(QString::fromStdString(generateVIN()));
     formLayout->addRow("VIN:", vinEdit);
     
     topLayout->addLayout(formLayout);
     
-    imagePreviewLabel = new QLabel;
     imagePreviewLabel->setFixedSize(300, 200);
     imagePreviewLabel->setAlignment(Qt::AlignCenter);
     imagePreviewLabel->setStyleSheet("border: 2px solid #004080; border-radius: 5px; background-color: #1e1e1e;");
@@ -112,24 +117,19 @@ AddCarDialog::AddCarDialog(QWidget* parent) : QDialog(parent) {
     
     mainLayout->addLayout(topLayout);
     
-    optionsGroup = new QGroupBox("Optional Features");
-    optionsLayout = new QVBoxLayout(optionsGroup);
-    
     auto availableOptions = Car::getAvailableOptions();
-    for (const auto& option : availableOptions) {
-        QCheckBox* checkbox = new QCheckBox(QString("$%1 - %2").arg(option.second).arg(QString::fromStdString(option.first)));
-        optionCheckboxes[option.first] = checkbox;
+    for (const auto& [optName, optPrice] : availableOptions) {
+        auto* checkbox = new QCheckBox(QString("$%1 - %2").arg(optPrice).arg(QString::fromStdString(optName)));
+        optionCheckboxes[optName] = checkbox;
         optionsLayout->addWidget(checkbox);
         connect(checkbox, &QCheckBox::toggled, this, &AddCarDialog::updateTotalPrice);
     }
     
     mainLayout->addWidget(optionsGroup);
     
-    totalPriceLabel = new QLabel("Final Price: <span style='color: #28a745;'>$0.00</span>");
     totalPriceLabel->setStyleSheet("font-weight: bold; font-size: 16px;");
     mainLayout->addWidget(totalPriceLabel);
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AddCarDialog::validateAndAccept);

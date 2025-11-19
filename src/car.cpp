@@ -6,6 +6,31 @@
 #include <random>
 #include <chrono>
 #include "safeinput.h"
+#include "car_serializer.h"
+
+namespace {
+int parseIntSafe(const std::string& text, int fallback = 0) {
+    try {
+        if (!text.empty() && std::all_of(text.begin(), text.end(), ::isdigit)) {
+            return std::stoi(text);
+        }
+    } catch (const std::invalid_argument&) {
+    } catch (const std::out_of_range&) {
+    }
+    return fallback;
+}
+
+double parseDoubleSafe(const std::string& text, double fallback = 0.0) {
+    try {
+        if (!text.empty()) {
+            return std::stod(text);
+        }
+    } catch (const std::invalid_argument&) {
+    } catch (const std::out_of_range&) {
+    }
+    return fallback;
+}
+} // namespace
 
 const std::map<std::string, std::set<std::string, std::less<>>, std::less<>> Car::validBrandsAndModels = {
     {"BMW", {"3 Series", "5 Series", "X5", "M3", "i8"}},
@@ -98,126 +123,11 @@ void Car::display() const {
 }
 
 std::string Car::toString() const {
-    std::string result = brand + "," + model + "," + std::to_string(year) + "," + std::to_string(price) + "," + color + "," + std::to_string(horsepower) + "," + transmission + "," + (reserved ? "1" : "0") + "," + reservedBy + "," + std::to_string(stock) + "," + vin + "," + imagePath + ",";
-    
-    for (auto it = options.begin(); it != options.end(); ++it) {
-        if (it != options.begin()) result += ";";
-        result += it->first + ";" + std::to_string(it->second);
-    }
-    
-    return result;
+    return CarSerializer::toString(*this);
 }
 
 Car Car::fromString(const std::string& data) {
-    std::stringstream ss(data);
-    std::string brand;
-    std::string model;
-    std::string yearStr;
-    std::string priceStr;
-    std::string color;
-    std::string horsepowerStr;
-    std::string transmission;
-    std::string reservedStr;
-    std::string reservedBy;
-    std::string stockStr;
-    std::string vin;
-    std::string imagePath;
-    std::string optionsStr;
-    
-    std::getline(ss, brand, ',');
-    std::getline(ss, model, ',');
-    std::getline(ss, yearStr, ',');
-    std::getline(ss, priceStr, ',');
-    std::getline(ss, color, ',');
-    std::getline(ss, horsepowerStr, ',');
-    std::getline(ss, transmission, ',');
-    std::getline(ss, reservedStr, ',');
-    std::getline(ss, reservedBy, ',');
-    std::getline(ss, stockStr, ',');
-    std::getline(ss, vin, ',');
-    std::getline(ss, imagePath, ',');
-    std::getline(ss, optionsStr, ',');
-    
-    int year = 0;
-    try {
-        if (!yearStr.empty() && std::all_of(yearStr.begin(), yearStr.end(), ::isdigit)) {
-            year = std::stoi(yearStr);
-        }
-    } catch (const std::invalid_argument&) {
-        year = 0;
-    } catch (const std::out_of_range&) {
-        year = 0;
-    }
-    
-    double price = 0.0;
-    try {
-        if (!priceStr.empty()) {
-            price = std::stod(priceStr);
-        }
-    } catch (const std::invalid_argument&) {
-        price = 0.0;
-    } catch (const std::out_of_range&) {
-        price = 0.0;
-    }
-    
-    int horsepower = 0;
-    try {
-        if (!horsepowerStr.empty() && std::all_of(horsepowerStr.begin(), horsepowerStr.end(), ::isdigit)) {
-            horsepower = std::stoi(horsepowerStr);
-        }
-    } catch (const std::invalid_argument&) {
-        horsepower = 0;
-    } catch (const std::out_of_range&) {
-        horsepower = 0;
-    }
-    
-    bool reserved = reservedStr == "1";
-    
-    int stock = 1;
-    try {
-        if (!stockStr.empty() && std::all_of(stockStr.begin(), stockStr.end(), ::isdigit)) {
-            stock = std::stoi(stockStr);
-        }
-    } catch (const std::invalid_argument&) {
-        stock = 1;
-    } catch (const std::out_of_range&) {
-        stock = 1;
-    }
-    
-    Car car(brand, model, year, price, color, horsepower, transmission, stock, vin);
-    car.setReserved(reserved);
-    car.setReservedBy(reservedBy);
-    if (!imagePath.empty()) {
-        car.setImagePath(imagePath);
-    }
-    
-    if (!optionsStr.empty()) {
-        std::stringstream optionsSs(optionsStr);
-        std::string optionItem;
-        std::vector<std::string> parts;
-        while (std::getline(optionsSs, optionItem, ';')) {
-            parts.push_back(optionItem);
-        }
-        // Parts come in pairs: option name, price
-        for (size_t i = 0; i + 1 < parts.size(); i += 2) {
-            std::string option = parts[i];
-            double optionPrice = 0.0;
-            try {
-                if (!parts[i + 1].empty()) {
-                    optionPrice = std::stod(parts[i + 1]);
-                }
-            } catch (const std::invalid_argument&) {
-                optionPrice = 0.0;
-            } catch (const std::out_of_range&) {
-                optionPrice = 0.0;
-            }
-            if (!option.empty()) {
-                car.addOption(option, optionPrice);
-            }
-        }
-    }
-    
-    return car;
+    return CarSerializer::fromString(data);
 }
 
 bool Car::isValidBrand(const std::string& brand) {

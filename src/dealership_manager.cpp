@@ -2,9 +2,8 @@
 #include <QDebug>
 #include <QCoreApplication>
 
-DealershipManager::DealershipManager() {
+DealershipManager::DealershipManager() : dataLoaded(true) {
     loadDataFromFiles();
-    dataLoaded = true;
 }
 
 const std::vector<Car>& DealershipManager::getCars() const {

@@ -3,7 +3,17 @@
 #include <QLabel>
 #include <QHBoxLayout>
 
-MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QDialog(parent), manager(manager) {
+MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) 
+    : QDialog(parent)
+    , manager(manager)
+    , carCombo(new QComboBox(this))
+    , clientCombo(new QComboBox(this))
+    , originalPriceLabel(new QLabel("$0.00", this))
+    , discountLabel(new QLabel("0.0%", this))
+    , finalPriceLabel(new QLabel("$0.00", this))
+    , clientBalanceLabel(new QLabel("$0.00", this))
+    , optionsGroup(new QGroupBox("Configure Options", this))
+    , buttonBox(new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this)) {
     setWindowTitle("Make Sale");
     setStyleSheet(
         "QDialog { background-color: #ffffff; color: #333333; font-family: 'Segoe UI', Arial, sans-serif; }"
@@ -32,7 +42,6 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     
     auto* formLayout = new QFormLayout;
     
-    carCombo = new QComboBox;
     const auto& cars = manager.getCars();
     for (size_t i = 0; i < cars.size(); ++i) {
         QString displayText = QString("%1 %2 (%3) - Stock: %4")
@@ -47,7 +56,6 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     }
     formLayout->addRow("Car (VIN):", carCombo);
     
-    clientCombo = new QComboBox;
     const auto& clients = manager.getClients();
     for (size_t i = 0; i < clients.size(); ++i) {
         QString displayText = QString("%1 - Balance: $%2")
@@ -59,7 +67,6 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     
     mainLayout->addLayout(formLayout);
     
-    optionsGroup = new QGroupBox("Configure Options");
     auto* optionsLayout = new QVBoxLayout(optionsGroup);
     optionsLayout->addWidget(new QLabel("Options:"));
     const auto& availableOptions = Car::getAvailableOptions();
@@ -74,22 +81,17 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     
     auto* priceLayout = new QFormLayout;
     
-    originalPriceLabel = new QLabel("$0.00");
     priceLayout->addRow("Original Price:", originalPriceLabel);
     
-    discountLabel = new QLabel("0.0%");
     priceLayout->addRow("Discount:", discountLabel);
     
-    finalPriceLabel = new QLabel("$0.00");
     finalPriceLabel->setStyleSheet("font-weight: bold; font-size: 14px; color: #28a745;");
     priceLayout->addRow("Final Price:", finalPriceLabel);
     
-    clientBalanceLabel = new QLabel("$0.00");
     priceLayout->addRow("Client Balance:", clientBalanceLabel);
     
     mainLayout->addLayout(priceLayout);
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     
     connect(carCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MakeSaleDialog::onCarChanged);

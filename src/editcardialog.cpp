@@ -1,7 +1,17 @@
 #include "editcardialog.h"
 #include <QMessageBox>
 
-EditCarDialog::EditCarDialog(const Car& car, QWidget* parent) : QDialog(parent), originalCar(car) {
+EditCarDialog::EditCarDialog(const Car& car, QWidget* parent) 
+    : QDialog(parent)
+    , originalCar(car)
+    , brandCombo(new QComboBox(this))
+    , modelCombo(new QComboBox(this))
+    , yearSpin(new QSpinBox(this))
+    , priceSpin(new QDoubleSpinBox(this))
+    , colorCombo(new QComboBox(this))
+    , horsepowerSpin(new QSpinBox(this))
+    , transmissionCombo(new QComboBox(this))
+    , buttonBox(new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this)) {
     setWindowTitle("Edit Car");
     setModal(true);
 
@@ -23,34 +33,26 @@ EditCarDialog::EditCarDialog(const Car& car, QWidget* parent) : QDialog(parent),
         "QPushButton:pressed { background-color: #1565c0; }"
     );
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     
-    QFormLayout* formLayout = new QFormLayout;
+    auto* formLayout = new QFormLayout;
     
-    brandCombo = new QComboBox;
     brandCombo->addItems({"BMW", "Audi", "Toyota", "Mercedes", "Ford", "Volkswagen", "Honda", "Tesla", "Chevrolet", "Hyundai"});
     brandCombo->setCurrentText(QString::fromStdString(car.getBrand()));
     
-    modelCombo = new QComboBox;
-    
-    yearSpin = new QSpinBox;
     yearSpin->setRange(1900, 2100);
     yearSpin->setValue(car.getYear());
     
-    priceSpin = new QDoubleSpinBox;
     priceSpin->setRange(0.01, 1000000);
     priceSpin->setDecimals(2);
     priceSpin->setValue(car.getPrice());
     
-    colorCombo = new QComboBox;
     colorCombo->addItems({"Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Brown", "Purple"});
     colorCombo->setCurrentText(QString::fromStdString(car.getColor()));
     
-    horsepowerSpin = new QSpinBox;
     horsepowerSpin->setRange(1, 2000);
     horsepowerSpin->setValue(car.getHorsepower());
     
-    transmissionCombo = new QComboBox;
     transmissionCombo->addItems({"Automatic", "Manual"});
     transmissionCombo->setCurrentText(QString::fromStdString(car.getTransmission()));
     
@@ -64,7 +66,6 @@ EditCarDialog::EditCarDialog(const Car& car, QWidget* parent) : QDialog(parent),
     
     mainLayout->addLayout(formLayout);
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     
     connect(brandCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditCarDialog::onBrandChanged);
