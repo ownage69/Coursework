@@ -39,7 +39,7 @@ public:
     int getStock() const;
     std::string getVin() const;
     std::string getImagePath() const;
-    const std::map<std::string, double>& getOptions() const;
+    const std::map<std::string, double, std::less<>>& getOptions() const;
     double getTotalPrice() const;
     
     void setBrand(const std::string& newBrand);

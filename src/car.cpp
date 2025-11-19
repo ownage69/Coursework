@@ -45,7 +45,7 @@ std::string Car::getReservedBy() const { return reservedBy; }
 int Car::getStock() const { return stock; }
 std::string Car::getVin() const { return vin; }
 std::string Car::getImagePath() const { return imagePath; }
-const std::map<std::string, double>& Car::getOptions() const { return options; }
+const std::map<std::string, double, std::less<>>& Car::getOptions() const { return options; }
 
 double Car::getTotalPrice() const {
     double total = price;
