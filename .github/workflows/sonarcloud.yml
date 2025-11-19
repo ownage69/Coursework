@@ -31,6 +31,11 @@ jobs:
         run: |
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make -j$(nproc)
       
+      - name: Verify compile_commands.json
+        run: |
+          echo "Listing ${BUILD_WRAPPER_OUT_DIR}"
+          ls -la ${{ env.BUILD_WRAPPER_OUT_DIR }} || true
+      
       # Run the SonarCloud scanner (properties are read from sonar-project.properties).
       # We do NOT pass the deprecated -Dsonar.cfamily.build-wrapper-output anymore.
       # The project file already points analysis to bw-output/compile_commands.json.
@@ -38,3 +43,5 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
