@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <string_view>
 
 class Client {
 private:
@@ -15,8 +16,8 @@ public:
     std::string getPhone() const;
     double getBalance() const;
     
-    void setFullName(const std::string& fullName);
-    void setPhone(const std::string& phone);
+    void setFullName(std::string_view newFullName);
+    void setPhone(std::string_view newPhone);
     void setBalance(double balance);
     
     void display() const;

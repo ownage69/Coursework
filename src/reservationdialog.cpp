@@ -3,7 +3,7 @@
 #include <QVariant>
 
 ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent) 
-    : QDialog(parent), manager(manager), selectedCarIndex(0), selectedClientIndex(0) {
+    : QDialog(parent), manager(manager) {
     setWindowTitle("Reserve Car");
     setModal(true);
 
@@ -22,20 +22,18 @@ ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent
         "QPushButton:pressed { background-color: #1565c0; }"
     );
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    
-    QFormLayout* formLayout = new QFormLayout;
-    
-    carCombo = new QComboBox;
-    clientCombo = new QComboBox;
-    
     const auto& cars = manager.getCars();
     const auto& clients = manager.getClients();
-    
     if (cars.empty() || clients.empty()) {
         QMessageBox::warning(this, "Error", "No cars or clients available!");
         return;
     }
+    
+    auto* mainLayout = new QVBoxLayout(this);
+    auto* formLayout = new QFormLayout;
+    
+    carCombo = new QComboBox;
+    clientCombo = new QComboBox;
     
     for (size_t i = 0; i < cars.size(); ++i) {
         if (!cars[i].isReserved() && cars[i].getStock() > 0) {
@@ -46,8 +44,8 @@ ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent
         }
     }
     
-    for (size_t i = 0; i < clients.size(); ++i) {
-        clientCombo->addItem(QString::fromStdString(clients[i].getFullName()));
+    for (const auto& client : clients) {
+        clientCombo->addItem(QString::fromStdString(client.getFullName()));
     }
     
     if (carCombo->count() == 0) {
@@ -68,14 +66,12 @@ ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent
 }
 
 void ReservationDialog::setSelectedCar(size_t index) {
-    const auto& cars = manager.getCars();
-    if (index >= cars.size()) {
+    if (const auto& cars = manager.getCars(); index >= cars.size()) {
         return;
     }
     
     for (int i = 0; i < carCombo->count(); ++i) {
-        QVariant data = carCombo->itemData(i);
-        if (data.isValid() && data.value<size_t>() == index) {
+        if (QVariant data = carCombo->itemData(i); data.isValid() && data.value<size_t>() == index) {
             carCombo->setCurrentIndex(i);
             break;
         }
@@ -91,8 +87,7 @@ size_t ReservationDialog::getSelectedClientIndex() const {
 }
 
 void ReservationDialog::validateAndAccept() {
-    QVariant data = carCombo->currentData();
-    if (data.isValid()) {
+    if (QVariant data = carCombo->currentData(); data.isValid()) {
         selectedCarIndex = data.value<size_t>();
     } else {
         selectedCarIndex = 0;

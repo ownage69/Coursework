@@ -18,8 +18,8 @@ private:
     
     QDialogButtonBox* buttonBox;
     
-    size_t selectedCarIndex;
-    size_t selectedClientIndex;
+    size_t selectedCarIndex{0};
+    size_t selectedClientIndex{0};
 
 public:
     explicit ReservationDialog(DealershipManager& manager, QWidget* parent = nullptr);

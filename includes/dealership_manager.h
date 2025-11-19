@@ -10,6 +10,7 @@
 #include "sale_service.h"
 #include "inventory_service.h"
 #include <QCoreApplication>
+#include <string_view>
 
 class DealershipManager {
 private:
@@ -26,9 +27,9 @@ public:
     const std::vector<Client>& getClients() const;
     const std::vector<Sale>& getSales() const;
     
-    bool addCar(Car car);
-    bool addClient(Client client);
-    bool addSale(Sale sale);
+    bool addCar(const Car& car);
+    bool addClient(const Client& client);
+    bool addSale(const Sale& sale);
     
     bool makeSale(size_t carIndex, size_t clientIndex, double originalPrice, double finalPrice, double discount);
     bool makeSaleWithCar(const Car& carWithOptions, size_t carIndex, size_t clientIndex, double originalPrice, double finalPrice, double discount);
@@ -45,7 +46,7 @@ public:
     bool clearData();
     
     bool reserveCar(size_t carIndex, size_t clientIndex);
-    bool unreserveCar(const std::string& vin);
+    bool unreserveCar(std::string_view vin);
     bool editCar(size_t index, const Car& newCar);
     bool deleteCar(size_t index);
     bool deleteClient(size_t index);

@@ -190,7 +190,7 @@ void MainWindow::populateCarsGrid() {
     
     const int columnsPerRow = 3;
     for (size_t i = 0; i < cars.size(); ++i) {
-        CarCardWidget* card = new CarCardWidget(cars[i], i);
+        auto* card = new CarCardWidget(cars[i], i);
         connect(card, &CarCardWidget::editRequested, this, &MainWindow::editCar);
         connect(card, &CarCardWidget::deleteRequested, this, &MainWindow::deleteCar);
         connect(card, &CarCardWidget::sellRequested, this, &MainWindow::makeSaleForCar);
@@ -214,11 +214,11 @@ void MainWindow::populateClientsTable() {
     const auto& clients = manager.getClients();
     
     qDebug() << "populateClientsTable: Populating" << clients.size() << "clients...";
-    for (size_t i = 0; i < clients.size(); ++i) {
+    for (const auto& client : clients) {
         QList<QStandardItem*> row;
-        auto* c1 = new QStandardItem(QString::fromStdString(clients[i].getFullName()));
-        auto* c2 = new QStandardItem(QString::fromStdString(clients[i].getPhone()));
-        auto* c3 = new QStandardItem("$" + QString::number(clients[i].getBalance(), 'f', 2));
+        auto* c1 = new QStandardItem(QString::fromStdString(client.getFullName()));
+        auto* c2 = new QStandardItem(QString::fromStdString(client.getPhone()));
+        auto* c3 = new QStandardItem("$" + QString::number(client.getBalance(), 'f', 2));
         row << c1;
         row << c2;
         row << c3;
@@ -235,18 +235,18 @@ void MainWindow::populateSalesTable() {
     const auto& sales = manager.getSales();
     
     qDebug() << "populateSalesTable: Populating" << sales.size() << "sales...";
-    for (size_t i = 0; i < sales.size(); ++i) {
+    for (const auto& sale : sales) {
         QList<QStandardItem*> row;
-        std::string carInfo = sales[i].getCar().getBrand() + " " + sales[i].getCar().getModel() + " (" + sales[i].getCar().getVin() + ")";
-        std::string clientInfo = sales[i].getClient().getFullName();
+        std::string carInfo = sale.getCar().getBrand() + " " + sale.getCar().getModel() + " (" + sale.getCar().getVin() + ")";
+        std::string clientInfo = sale.getClient().getFullName();
         
         // Build options string
         std::string optionsStr = "";
-        const auto& options = sales[i].getCar().getOptions();
-        if (!options.empty()) {
+        if (const auto& options = sale.getCar().getOptions(); !options.empty()) {
             std::vector<std::string> optionNames;
-            for (const auto& opt : options) {
-                optionNames.push_back(opt.first);
+            optionNames.reserve(options.size());
+            for (const auto& [name, price] : options) {
+                optionNames.push_back(name);
             }
             optionsStr = "[" + optionNames[0];
             for (size_t j = 1; j < optionNames.size(); ++j) {
@@ -257,12 +257,12 @@ void MainWindow::populateSalesTable() {
             optionsStr = "None";
         }
         
-        auto* s1 = new QStandardItem(QString::fromStdString(sales[i].getDate()));
+        auto* s1 = new QStandardItem(QString::fromStdString(sale.getDate()));
         auto* s2 = new QStandardItem(QString::fromStdString(carInfo));
         auto* s3 = new QStandardItem(QString::fromStdString(clientInfo));
-        auto* s4 = new QStandardItem("$" + QString::number(sales[i].getOriginalPrice(), 'f', 2));
-        auto* s5 = new QStandardItem(QString("%1%").arg(sales[i].getDiscountPercentage(), 0, 'f', 1));
-        auto* s6 = new QStandardItem("$" + QString::number(sales[i].getFinalPrice(), 'f', 2));
+        auto* s4 = new QStandardItem("$" + QString::number(sale.getOriginalPrice(), 'f', 2));
+        auto* s5 = new QStandardItem(QString("%1%").arg(sale.getDiscountPercentage(), 0, 'f', 1));
+        auto* s6 = new QStandardItem("$" + QString::number(sale.getFinalPrice(), 'f', 2));
         auto* s7 = new QStandardItem(QString::fromStdString(optionsStr));
         row << s1;
         row << s2;
@@ -284,8 +284,14 @@ void MainWindow::updateTables() {
         populateSalesTable();
         updateInventoryLabel();
         qDebug() << "updateTables completed";
-    } catch (const std::exception& e) {
-        qCritical() << "Exception in updateTables:" << e.what();
+    } catch (const std::bad_alloc& e) {
+        qCritical() << "Out of memory in updateTables:" << e.what();
+        QMessageBox::warning(nullptr, "Memory Error", "Out of memory while updating tables.");
+    } catch (const std::runtime_error& e) {
+        qCritical() << "Runtime error in updateTables:" << e.what();
+        QMessageBox::warning(nullptr, "Data Error", "Failed to load table data. Some features may not work correctly.");
+    } catch (const std::logic_error& e) {
+        qCritical() << "Logic error in updateTables:" << e.what();
         QMessageBox::warning(nullptr, "Data Error", "Failed to load table data. Some features may not work correctly.");
     }
 }
@@ -343,8 +349,7 @@ void MainWindow::makeSale() {
 }
 
 void MainWindow::makeSaleForCar(int index) {
-    const auto& cars = manager.getCars();
-    if (index >= static_cast<int>(cars.size())) {
+    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
@@ -391,8 +396,7 @@ void MainWindow::reserveCar() {
 }
 
 void MainWindow::reserveCarForCard(int index) {
-    const auto& cars = manager.getCars();
-    if (index >= static_cast<int>(cars.size())) {
+    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }
@@ -414,8 +418,7 @@ void MainWindow::reserveCarForCard(int index) {
 }
 
 void MainWindow::editCar(int index) {
-    const auto& cars = manager.getCars();
-    if (index >= static_cast<int>(cars.size())) {
+    if (const auto& cars = manager.getCars(); index >= static_cast<int>(cars.size())) {
         QMessageBox::warning(this, "Error", "Invalid car selection.");
         return;
     }

@@ -26,11 +26,11 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     );
     setModal(true);
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(15);
     mainLayout->setContentsMargins(20, 20, 20, 20);
     
-    QFormLayout* formLayout = new QFormLayout;
+    auto* formLayout = new QFormLayout;
     
     carCombo = new QComboBox;
     const auto& cars = manager.getCars();
@@ -60,19 +60,19 @@ MakeSaleDialog::MakeSaleDialog(DealershipManager& manager, QWidget* parent) : QD
     mainLayout->addLayout(formLayout);
     
     optionsGroup = new QGroupBox("Configure Options");
-    QVBoxLayout* optionsLayout = new QVBoxLayout(optionsGroup);
+    auto* optionsLayout = new QVBoxLayout(optionsGroup);
     optionsLayout->addWidget(new QLabel("Options:"));
     const auto& availableOptions = Car::getAvailableOptions();
-    for (const auto& option : availableOptions) {
-        QCheckBox* checkBox = new QCheckBox(QString("%1 ($%2)").arg(QString::fromStdString(option.first)).arg(option.second, 0, 'f', 0));
-        optionCheckboxes[option.first] = checkBox;
+    for (const auto& [name, price] : availableOptions) {
+        auto* checkBox = new QCheckBox(QString("%1 ($%2)").arg(QString::fromStdString(name)).arg(price, 0, 'f', 0));
+        optionCheckboxes[name] = checkBox;
         optionsLayout->addWidget(checkBox);
         connect(checkBox, &QCheckBox::toggled, this, &MakeSaleDialog::updatePriceInfo);
     }
     
     mainLayout->addWidget(optionsGroup);
     
-    QFormLayout* priceLayout = new QFormLayout;
+    auto* priceLayout = new QFormLayout;
     
     originalPriceLabel = new QLabel("$0.00");
     priceLayout->addRow("Original Price:", originalPriceLabel);
@@ -114,9 +114,9 @@ void MakeSaleDialog::onCarChanged() {
 }
 
 void MakeSaleDialog::updateAddOptionsChecks(const Car& car) {
-    for (const auto& cb : optionCheckboxes) {
-        bool hasOption = car.getOptions().count(cb.first) > 0;
-        cb.second->setChecked(hasOption);
+    for (const auto& [name, checkbox] : optionCheckboxes) {
+        bool hasOption = car.getOptions().count(name) > 0;
+        checkbox->setChecked(hasOption);
     }
 }
 
@@ -137,11 +137,11 @@ void MakeSaleDialog::updatePriceInfo() {
     double basePrice = car.getTotalPrice();  // Includes car's options
     double optionsAdjustment = 0.0;
     
-    for (const auto& checkbox : optionCheckboxes) {
-        bool isOnCar = car.getOptions().count(checkbox.first) > 0;
-        bool isChecked = checkbox.second->isChecked();
+    for (const auto& [name, checkbox] : optionCheckboxes) {
+        bool isOnCar = car.getOptions().count(name) > 0;
+        bool isChecked = checkbox->isChecked();
         
-        auto it = Car::getAvailableOptions().find(checkbox.first);
+        auto it = Car::getAvailableOptions().find(name);
         if (it == Car::getAvailableOptions().end()) continue;
         
         double optionPrice = it->second;
@@ -195,9 +195,7 @@ void MakeSaleDialog::validateAndAccept() {
     }
     
     updatePriceInfo();
-    double finalPrice = finalPriceLabel->text().remove('$').toDouble();
-    
-    if (client.getBalance() < finalPrice) {
+    if (double finalPrice = finalPriceLabel->text().remove('$').toDouble(); client.getBalance() < finalPrice) {
         QMessageBox::warning(this, "Error", "Insufficient client balance!");
         return;
     }
@@ -238,17 +236,17 @@ Car MakeSaleDialog::getCarWithSelectedOptions() const {
     
     // Clear existing options and apply selected ones
     const auto& currentOptions = car.getOptions();
-    for (const auto& opt : currentOptions) {
-        car.removeOption(opt.first);
+    for (const auto& [optName, _] : currentOptions) {
+        car.removeOption(optName);
     }
     
     // Add selected options
     const auto& availableOptions = Car::getAvailableOptions();
-    for (const auto& checkbox : optionCheckboxes) {
-        if (checkbox.second->isChecked()) {
-            auto it = availableOptions.find(checkbox.first);
+    for (const auto& [name, checkbox] : optionCheckboxes) {
+        if (checkbox->isChecked()) {
+            auto it = availableOptions.find(name);
             if (it != availableOptions.end()) {
-                car.addOption(checkbox.first, it->second);
+                car.addOption(name, it->second);
             }
         }
     }

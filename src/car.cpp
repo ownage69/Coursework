@@ -57,14 +57,14 @@ double Car::getTotalPrice() const {
 
 void Car::setBrand(std::string_view newBrand) { this->brand = std::string(newBrand); }
 void Car::setModel(std::string_view newModel) { this->model = std::string(newModel); }
-void Car::setYear(int year) { this->year = year; }
-void Car::setPrice(double price) { this->price = price; }
+void Car::setYear(int newYear) { this->year = newYear; }
+void Car::setPrice(double newPrice) { this->price = newPrice; }
 void Car::setColor(std::string_view newColor) { this->color = std::string(newColor); }
-void Car::setHorsepower(int horsepower) { this->horsepower = horsepower; }
+void Car::setHorsepower(int newHorsepower) { this->horsepower = newHorsepower; }
 void Car::setTransmission(std::string_view newTransmission) { this->transmission = std::string(newTransmission); }
-void Car::setReserved(bool reserved) { this->reserved = reserved; }
+void Car::setReserved(bool isReserved) { this->reserved = isReserved; }
 void Car::setReservedBy(std::string_view newReservedBy) { this->reservedBy = std::string(newReservedBy); }
-void Car::setStock(int stock) { this->stock = stock; }
+void Car::setStock(int newStock) { this->stock = newStock; }
 void Car::setVin(std::string_view newVin) { this->vin = std::string(newVin); }
 void Car::setImagePath(std::string_view newImagePath) { this->imagePath = std::string(newImagePath); }
 
@@ -91,8 +91,8 @@ void Car::display() const {
         std::cout << "Reserved by: " << reservedBy << std::endl;
     }
     std::cout << "Options:" << std::endl;
-    for (const auto& option : options) {
-        std::cout << "  " << option.first << ": $" << option.second << std::endl;
+    for (const auto& [name, price] : options) {
+        std::cout << "  " << name << ": $" << price << std::endl;
     }
     std::cout << "Total Price: $" << getTotalPrice() << std::endl;
 }
@@ -233,14 +233,13 @@ bool Car::isValidModelForBrand(const std::string& brand, const std::string& mode
 
 std::string Car::getValidBrandInput() {
     std::cout << "Available brands: ";
-    for (const auto& pair : validBrandsAndModels) {
-        std::cout << pair.first << " ";
+    for (const auto& [brandName, _] : validBrandsAndModels) {
+        std::cout << brandName << " ";
     }
     std::cout << std::endl;
     
     while (true) {
-        std::string brand = readLineTrimmed("Enter brand: ");
-        if (isValidBrand(brand)) {
+        if (std::string brand = readLineTrimmed("Enter brand: "); isValidBrand(brand)) {
             return brand;
         }
         std::cout << "Invalid brand. Please choose from the available brands." << std::endl;
@@ -250,15 +249,14 @@ std::string Car::getValidBrandInput() {
 std::string Car::getValidModelInput(const std::string& brand) {
     std::cout << "Available models for " << brand << ": ";
     if (auto it = validBrandsAndModels.find(brand); it != validBrandsAndModels.end()) {
-        for (const auto& model : it->second) {
-            std::cout << model << " ";
+        for (const auto& modelName : it->second) {
+            std::cout << modelName << " ";
         }
     }
     std::cout << std::endl;
     
     while (true) {
-        std::string model = readLineTrimmed("Enter model: ");
-        if (isValidModelForBrand(brand, model)) {
+        if (std::string model = readLineTrimmed("Enter model: "); isValidModelForBrand(brand, model)) {
             return model;
         }
         std::cout << "Invalid model for " << brand << ". Please choose from the available models." << std::endl;
@@ -266,17 +264,16 @@ std::string Car::getValidModelInput(const std::string& brand) {
 }
 
 std::string Car::getValidColorInput() {
-    std::set<std::string> validColors = {"Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Brown", "Purple"};
+    std::set<std::string, std::less<>> validColors = {"Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Brown", "Purple"};
     
     std::cout << "Available colors: ";
-    for (const auto& color : validColors) {
-        std::cout << color << " ";
+    for (const auto& colorName : validColors) {
+        std::cout << colorName << " ";
     }
     std::cout << std::endl;
     
     while (true) {
-        std::string color = readLineTrimmed("Enter color: ");
-        if (validColors.find(color) != validColors.end()) {
+        if (std::string color = readLineTrimmed("Enter color: "); validColors.find(color) != validColors.end()) {
             return color;
         }
         std::cout << "Invalid color. Please choose from the available colors." << std::endl;
@@ -286,8 +283,7 @@ std::string Car::getValidColorInput() {
 std::string Car::getValidTransmissionInput() {
     while (true) {
         std::cout << "Available transmissions: Automatic, Manual" << std::endl;
-        std::string transmission = readLineTrimmed("Enter transmission (Automatic/Manual): ");
-        if (transmission == "Automatic" || transmission == "Manual") {
+        if (std::string transmission = readLineTrimmed("Enter transmission (Automatic/Manual): "); transmission == "Automatic" || transmission == "Manual") {
             return transmission;
         }
         std::cout << "Invalid transmission. Please enter 'Automatic' or 'Manual'." << std::endl;

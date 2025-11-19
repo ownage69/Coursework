@@ -11,10 +11,8 @@
 #include <algorithm>
 
 QString CarCardWidget::getImagePathForCar(const Car& car) const {
-    QString savedPath = QString::fromStdString(car.getImagePath());
-    if (!savedPath.isEmpty()) {
-        QPixmap testPixmap(savedPath);
-        if (!testPixmap.isNull()) {
+    if (QString savedPath = QString::fromStdString(car.getImagePath()); !savedPath.isEmpty()) {
+        if (QPixmap testPixmap(savedPath); !testPixmap.isNull()) {
             return savedPath;
         }
     }
@@ -49,14 +47,12 @@ QString CarCardWidget::getImagePathForCar(const Car& car) const {
     
     QString imagePath = QString(":/images/%1_%2.jpg").arg(brand).arg(model);
     
-    QPixmap testPixmap(imagePath);
-    if (!testPixmap.isNull()) {
+    if (QPixmap testPixmap(imagePath); !testPixmap.isNull()) {
         return imagePath;
     }
     
     imagePath = QString(":/images/%1_%2.png").arg(brand).arg(model);
-    testPixmap = QPixmap(imagePath);
-    if (!testPixmap.isNull()) {
+    if (QPixmap testPixmap2(imagePath); !testPixmap2.isNull()) {
         return imagePath;
     }
     
@@ -73,25 +69,24 @@ CarCardWidget::CarCardWidget(const Car& car, size_t index, QWidget* parent)
     );
     setAttribute(Qt::WA_TranslucentBackground, false);
     
-    QGraphicsDropShadowEffect* shadow = new QGraphicsDropShadowEffect;
+    auto* shadow = new QGraphicsDropShadowEffect;
     shadow->setBlurRadius(10);
     shadow->setXOffset(0);
     shadow->setYOffset(2);
     shadow->setColor(QColor(0, 0, 0, 30));
     setGraphicsEffect(shadow);
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(10, 10, 10, 10);
     mainLayout->setSpacing(8);
     
-    QHBoxLayout* headerLayout = new QHBoxLayout;
+    auto* headerLayout = new QHBoxLayout;
     headerLayout->setContentsMargins(0, 0, 0, 0);
     headerLayout->setSpacing(4);
     headerLayout->addStretch();
     
     QIcon editIcon;
-    QPixmap editPixmap(":/icons/pencil.png");
-    if (!editPixmap.isNull()) {
+    if (QPixmap editPixmap(":/icons/pencil.png"); !editPixmap.isNull()) {
         editIcon = QIcon(editPixmap);
     } else {
         editIcon = QIcon::fromTheme("document-edit", QIcon::fromTheme("edit"));
@@ -112,8 +107,7 @@ CarCardWidget::CarCardWidget(const Car& car, size_t index, QWidget* parent)
     headerLayout->addWidget(editButton);
     
     QIcon deleteIcon;
-    QPixmap deletePixmap(":/icons/trash.png");
-    if (!deletePixmap.isNull()) {
+    if (QPixmap deletePixmap(":/icons/trash.png"); !deletePixmap.isNull()) {
         deleteIcon = QIcon(deletePixmap);
     } else {
         deleteIcon = QIcon::fromTheme("edit-delete", QIcon::fromTheme("trash-empty"));

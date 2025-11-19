@@ -21,9 +21,9 @@ private:
     
     QDialogButtonBox* buttonBox;
     
-    size_t selectedCarIndex;
+    size_t selectedCarIndex{0};
     std::string reviewText;
-    int ratingValue;
+    int ratingValue{1};
 
 public:
     explicit ReviewDialog(DealershipManager& manager, QWidget* parent = nullptr);

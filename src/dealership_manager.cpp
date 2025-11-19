@@ -19,15 +19,15 @@ const std::vector<Sale>& DealershipManager::getSales() const {
     return saleRepository.getAll();
 }
 
-bool DealershipManager::addCar(Car car) {
+bool DealershipManager::addCar(const Car& car) {
     return carRepository.add(car);
 }
 
-bool DealershipManager::addClient(Client client) {
+bool DealershipManager::addClient(const Client& client) {
     return clientRepository.add(client);
 }
 
-bool DealershipManager::addSale(Sale sale) {
+bool DealershipManager::addSale(const Sale& sale) {
     return saleRepository.add(sale);
 }
 
@@ -154,7 +154,7 @@ bool DealershipManager::reserveCar(size_t carIndex, size_t clientIndex) {
     return carRepository.update(carIndex, car);
 }
 
-bool DealershipManager::unreserveCar(const std::string& vin) {
+bool DealershipManager::unreserveCar(std::string_view vin) {
     auto& cars = carRepository.getAll();
     for (size_t i = 0; i < cars.size(); ++i) {
         if (cars[i].getVin() == vin && cars[i].isReserved()) {

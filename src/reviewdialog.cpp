@@ -3,7 +3,7 @@
 #include <QLabel>
 
 ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent) 
-    : QDialog(parent), manager(manager), selectedCarIndex(0), ratingValue(1) {
+    : QDialog(parent), manager(manager) {
     setWindowTitle("Add Review");
     setModal(true);
     

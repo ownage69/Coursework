@@ -2,7 +2,7 @@
 
 PriceDelegate::PriceDelegate(QObject* parent) : QStyledItemDelegate(parent) {}
 
-PriceDelegate::~PriceDelegate() {}
+PriceDelegate::~PriceDelegate() = default;
 
 QString PriceDelegate::displayText(const QVariant& value, const QLocale& locale) const {
     if (value.type() == QVariant::Double || value.type() == QVariant::String) {

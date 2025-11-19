@@ -11,8 +11,8 @@ std::string Client::getFullName() const { return fullName; }
 std::string Client::getPhone() const { return phone; }
 double Client::getBalance() const { return balance; }
 
-void Client::setFullName(const std::string& fullName) { this->fullName = fullName; }
-void Client::setPhone(const std::string& phone) { this->phone = phone; }
+void Client::setFullName(std::string_view newFullName) { this->fullName = std::string(newFullName); }
+void Client::setPhone(std::string_view newPhone) { this->phone = std::string(newPhone); }
 void Client::setBalance(double balance) { this->balance = balance; }
 
 void Client::display() const {
@@ -27,7 +27,9 @@ std::string Client::toString() const {
 
 Client Client::fromString(const std::string& data) {
     std::stringstream ss(data);
-    std::string fullName, phone, balanceStr;
+    std::string fullName;
+    std::string phone;
+    std::string balanceStr;
     
     std::getline(ss, fullName, ',');
     std::getline(ss, phone, ',');
