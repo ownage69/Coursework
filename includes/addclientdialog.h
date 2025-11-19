@@ -22,7 +22,7 @@ private:
     QDialogButtonBox* buttonBox;
 
 public:
-    AddClientDialog(QWidget* parent = nullptr);
+    explicit AddClientDialog(QWidget* parent = nullptr);
     
     Client getClient() const;
 

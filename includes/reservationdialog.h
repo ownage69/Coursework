@@ -22,7 +22,7 @@ private:
     size_t selectedClientIndex;
 
 public:
-    ReservationDialog(DealershipManager& manager, QWidget* parent = nullptr);
+    explicit ReservationDialog(DealershipManager& manager, QWidget* parent = nullptr);
     
     void setSelectedCar(size_t index);
     size_t getSelectedCarIndex() const;

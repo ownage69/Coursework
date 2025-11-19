@@ -26,7 +26,7 @@ private:
     QLabel* clientBalanceLabel;
     
     QGroupBox* optionsGroup;
-    std::map<std::string, QCheckBox*> optionCheckboxes;
+    std::map<std::string, QCheckBox*, std::less<>> optionCheckboxes;
     
     QDialogButtonBox* buttonBox;
     
@@ -36,7 +36,7 @@ private:
     void updateAddOptionsChecks(const Car& car);
 
 public:
-    MakeSaleDialog(DealershipManager& manager, QWidget* parent = nullptr);
+    explicit MakeSaleDialog(DealershipManager& manager, QWidget* parent = nullptr);
     
     void setSelectedCar(size_t index);
     size_t getSelectedCarIndex() const;

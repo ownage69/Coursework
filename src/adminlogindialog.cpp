@@ -22,32 +22,32 @@ AdminLoginDialog::AdminLoginDialog(QWidget* parent) : QDialog(parent) {
         "QPushButton:pressed { background-color: #ef6c00; transform: translateY(0); }"
     );
 
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(20);
     mainLayout->setContentsMargins(30, 30, 30, 30);
 
-    QLabel* titleLabel = new QLabel("🔐 Administrator Access Required");
+    auto* titleLabel = new QLabel("🔐 Administrator Access Required");
     titleLabel->setStyleSheet("font-size: 18px; font-weight: bold; color: #e65100; margin-bottom: 5px;");
     titleLabel->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(titleLabel);
 
-    QLabel* subtitleLabel = new QLabel("Please enter your administrator credentials:");
+    auto* subtitleLabel = new QLabel("Please enter your administrator credentials:");
     subtitleLabel->setStyleSheet("font-size: 14px; color: #666; margin-bottom: 15px;");
     subtitleLabel->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(subtitleLabel);
 
-    QGridLayout* formLayout = new QGridLayout;
+    auto* formLayout = new QGridLayout;
     formLayout->setSpacing(12);
     formLayout->setColumnStretch(1, 1);
 
-    QLabel* usernameLabel = new QLabel("Username:");
+    auto* usernameLabel = new QLabel("Username:");
     usernameLabel->setStyleSheet("font-weight: 500; min-width: 120px;");
     usernameLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     usernameEdit = new QLineEdit;
     usernameEdit->setPlaceholderText("Enter administrator username");
     usernameEdit->setMinimumWidth(280);
 
-    QLabel* passwordLabel = new QLabel("Password:");
+    auto* passwordLabel = new QLabel("Password:");
     passwordLabel->setStyleSheet("font-weight: 500; min-width: 120px;");
     passwordLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     passwordEdit = new QLineEdit;
@@ -64,14 +64,14 @@ AdminLoginDialog::AdminLoginDialog(QWidget* parent) : QDialog(parent) {
 
     mainLayout->addStretch();
 
-    QHBoxLayout* buttonLayout = new QHBoxLayout;
+    auto* buttonLayout = new QHBoxLayout;
     buttonLayout->setSpacing(15);
 
-    QPushButton* cancelButton = new QPushButton("Cancel");
+    auto* cancelButton = new QPushButton("Cancel");
     cancelButton->setStyleSheet("QPushButton { background-color: #757575; } QPushButton:hover { background-color: #616161; }");
 
     buttonBox = new QDialogButtonBox;
-    QPushButton* okButton = buttonBox->addButton("Login", QDialogButtonBox::AcceptRole);
+    auto* okButton = buttonBox->addButton("Login", QDialogButtonBox::AcceptRole);
     okButton->setDefault(true);
 
     buttonLayout->addStretch();

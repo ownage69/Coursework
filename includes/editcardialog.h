@@ -28,7 +28,7 @@ private:
     QDialogButtonBox* buttonBox;
 
 public:
-    EditCarDialog(const Car& car, QWidget* parent = nullptr);
+    explicit EditCarDialog(const Car& car, QWidget* parent = nullptr);
     
     Car getCar() const;
 

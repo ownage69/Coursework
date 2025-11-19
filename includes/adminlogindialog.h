@@ -18,7 +18,7 @@ private:
     QDialogButtonBox* buttonBox;
 
 public:
-    AdminLoginDialog(QWidget* parent = nullptr);
+    explicit AdminLoginDialog(QWidget* parent = nullptr);
 
 private slots:
     void attemptLogin();

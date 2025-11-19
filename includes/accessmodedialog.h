@@ -12,7 +12,7 @@ class AccessModeDialog : public QDialog {
     Q_OBJECT
 
 private:
-    bool adminMode;
+    bool adminMode{false};
 
 public:
     explicit AccessModeDialog(QWidget* parent = nullptr);

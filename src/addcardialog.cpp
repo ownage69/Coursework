@@ -54,11 +54,11 @@ AddCarDialog::AddCarDialog(QWidget* parent) : QDialog(parent) {
         "QPushButton:pressed { background-color: #1565c0; }"
     );
 
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     
-    QHBoxLayout* topLayout = new QHBoxLayout;
+    auto* topLayout = new QHBoxLayout;
     
-    QFormLayout* formLayout = new QFormLayout;
+    auto* formLayout = new QFormLayout;
 
     brandCombo = new QComboBox;
     brandCombo->addItems({"Toyota", "Honda", "Ford", "Chevrolet", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai"});
@@ -129,7 +129,7 @@ AddCarDialog::AddCarDialog(QWidget* parent) : QDialog(parent) {
     totalPriceLabel->setStyleSheet("font-weight: bold; font-size: 16px;");
     mainLayout->addWidget(totalPriceLabel);
     
-    QDialogButtonBox* buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AddCarDialog::validateAndAccept);
@@ -156,11 +156,9 @@ QString AddCarDialog::getImagePathForBrandModel(const QString& brand, const QStr
     
     QString imagePath = QString(":/images/%1_%2.jpg").arg(brandLower).arg(modelLower);
     
-    QPixmap testPixmap(imagePath);
-    if (testPixmap.isNull()) {
+    if (QPixmap testPixmap(imagePath); testPixmap.isNull()) {
         imagePath = QString(":/images/%1_%2.png").arg(brandLower).arg(modelLower);
-        testPixmap = QPixmap(imagePath);
-        if (testPixmap.isNull()) {
+        if (QPixmap testPixmap2(imagePath); testPixmap2.isNull()) {
             return ":/images/default_car.png";
         }
     }
@@ -168,11 +166,10 @@ QString AddCarDialog::getImagePathForBrandModel(const QString& brand, const QStr
     return imagePath;
 }
 
-void AddCarDialog::onBrandChanged(int index) {
+void AddCarDialog::onBrandChanged([[maybe_unused]] int index) {
     modelCombo->clear();
-    QString brand = brandCombo->currentText();
     
-    if (brand == "BMW") {
+    if (QString brand = brandCombo->currentText(); brand == "BMW") {
         modelCombo->addItems({"3 Series", "5 Series", "7 Series", "X3", "X5"});
     } else if (brand == "Mercedes-Benz") {
         modelCombo->addItems({"C-Class", "E-Class", "S-Class", "GLC", "GLE"});
@@ -225,9 +222,9 @@ void AddCarDialog::updateImagePreview() {
 
 void AddCarDialog::updateTotalPrice() {
     double total = priceSpin->value();
-    for (const auto& pair : Car::getAvailableOptions()) {
-        if (optionCheckboxes[pair.first]->isChecked()) {
-            total += pair.second;
+    for (const auto& [name, price] : Car::getAvailableOptions()) {
+        if (optionCheckboxes[name]->isChecked()) {
+            total += price;
         }
     }
     totalPriceLabel->setText(QString("Final Price: <span style='color: #28a745;'>$%1</span>").arg(total, 0, 'f', 2));
@@ -269,8 +266,7 @@ void AddCarDialog::validateAndAccept() {
         return;
     }
     
-    QRegularExpression vinRegex("[A-Z0-9]{17}");
-    if (!vinRegex.match(vin).hasMatch()) {
+    if (QRegularExpression vinRegex("[A-Z0-9]{17}"); !vinRegex.match(vin).hasMatch()) {
         QMessageBox::warning(this, "Validation Error", "VIN must be 17 alphanumeric characters!");
         return;
     }
@@ -294,9 +290,9 @@ Car AddCarDialog::getCar() const {
     QString imagePath = getImagePathForBrandModel(brandCombo->currentText(), modelCombo->currentText());
     car.setImagePath(imagePath.toStdString());
     
-    for (const auto& pair : Car::getAvailableOptions()) {
-        if (optionCheckboxes.at(pair.first)->isChecked()) {
-            car.addOption(pair.first, pair.second);
+    for (const auto& [name, price] : Car::getAvailableOptions()) {
+        if (optionCheckboxes.at(name)->isChecked()) {
+            car.addOption(name, price);
         }
     }
     

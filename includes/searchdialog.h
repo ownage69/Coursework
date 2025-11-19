@@ -43,7 +43,7 @@ private:
     QPushButton* searchButton;
 
 public:
-    SearchDialog(DealershipManager& manager, QWidget* parent = nullptr);
+    explicit SearchDialog(DealershipManager& manager, QWidget* parent = nullptr);
 
 private slots:
     void onSearchTypeChanged();

@@ -26,7 +26,7 @@ private:
     int ratingValue;
 
 public:
-    ReviewDialog(DealershipManager& manager, QWidget* parent = nullptr);
+    explicit ReviewDialog(DealershipManager& manager, QWidget* parent = nullptr);
     
     size_t getSelectedCarIndex() const;
     std::string getReviewText() const;

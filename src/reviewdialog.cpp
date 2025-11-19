@@ -7,8 +7,6 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
     setWindowTitle("Add Review");
     setModal(true);
     
-    auto* mainLayout = new QVBoxLayout(this);
-    
     carCombo = new QComboBox(this);
     
     const auto& cars = manager.getCars();
@@ -17,6 +15,8 @@ ReviewDialog::ReviewDialog(DealershipManager& manager, QWidget* parent)
         QMessageBox::warning(this, "Error", "No cars available!");
         return;
     }
+    
+    auto* mainLayout = new QVBoxLayout(this);
     
     auto* formLayout = new QFormLayout;
     

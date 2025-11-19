@@ -14,18 +14,18 @@ private:
     std::string color;
     int horsepower;
     std::string transmission;
-    bool reserved;
+    bool reserved{false};
     std::string reservedBy;
     int stock;
     std::string vin;
-    std::string imagePath;
-    std::map<std::string, double> options;
+    std::string imagePath{":/images/default_car.png"};
+    std::map<std::string, double, std::less<>> options;
 
-    static const std::map<std::string, std::set<std::string>> validBrandsAndModels;
+    static const std::map<std::string, std::set<std::string, std::less<>>, std::less<>> validBrandsAndModels;
 
 public:
     Car();
-    Car(std::string brand, std::string model, int year, double price, std::string color, int horsepower, std::string transmission, int stock, std::string vin);
+    Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin);
     
     std::string getBrand() const;
     std::string getModel() const;
@@ -42,18 +42,18 @@ public:
     const std::map<std::string, double>& getOptions() const;
     double getTotalPrice() const;
     
-    void setBrand(std::string brand);
-    void setModel(std::string model);
+    void setBrand(const std::string& newBrand);
+    void setModel(const std::string& newModel);
     void setYear(int year);
     void setPrice(double price);
-    void setColor(std::string color);
+    void setColor(const std::string& newColor);
     void setHorsepower(int horsepower);
-    void setTransmission(std::string transmission);
+    void setTransmission(const std::string& newTransmission);
     void setReserved(bool reserved);
-    void setReservedBy(std::string reservedBy);
+    void setReservedBy(const std::string& newReservedBy);
     void setStock(int stock);
-    void setVin(std::string vin);
-    void setImagePath(std::string imagePath);
+    void setVin(const std::string& newVin);
+    void setImagePath(const std::string& newImagePath);
     void addOption(const std::string& option, double price);
     void removeOption(const std::string& option);
     
@@ -67,5 +67,5 @@ public:
     static std::string getValidModelInput(const std::string& brand);
     static std::string getValidColorInput();
     static std::string getValidTransmissionInput();
-    static const std::map<std::string, double> getAvailableOptions();
+    static const std::map<std::string, double, std::less<>> getAvailableOptions();
 };

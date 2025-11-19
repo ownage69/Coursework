@@ -10,7 +10,7 @@
 #include <QScrollArea>
 #include <QTextDocument>
 
-AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent), adminMode(false) {
+AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent) {
     qDebug() << "AccessModeDialog constructor called";
 
     try {
@@ -34,37 +34,37 @@ AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent), adminMode
             "QPushButton#exitButton:hover { background-color: #d32f2f; }"
         );
 
-        QVBoxLayout* mainLayout = new QVBoxLayout(this);
+        auto* mainLayout = new QVBoxLayout(this);
         mainLayout->setSpacing(20);
         mainLayout->setContentsMargins(30, 30, 30, 30);
 
-        QLabel* titleLabel = new QLabel("🚗 Welcome to Car Dealership Management System");
+        auto* titleLabel = new QLabel("🚗 Welcome to Car Dealership Management System");
         titleLabel->setStyleSheet("font-size: 20px; font-weight: bold; color: #2E7D32; margin-bottom: 10px;");
         titleLabel->setAlignment(Qt::AlignCenter);
         mainLayout->addWidget(titleLabel);
 
-        QLabel* subtitleLabel = new QLabel("Please select your preferred access mode:");
+        auto* subtitleLabel = new QLabel("Please select your preferred access mode:");
         subtitleLabel->setStyleSheet("font-size: 16px; color: #666; margin-bottom: 20px;");
         subtitleLabel->setAlignment(Qt::AlignCenter);
         mainLayout->addWidget(subtitleLabel);
 
-        QScrollArea* scrollArea = new QScrollArea;
+        auto* scrollArea = new QScrollArea;
         scrollArea->setWidgetResizable(true);
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         scrollArea->setStyleSheet("QScrollArea { border: none; background-color: transparent; }");
 
-        QWidget* scrollWidget = new QWidget;
-        QVBoxLayout* scrollLayout = new QVBoxLayout(scrollWidget);
+        auto* scrollWidget = new QWidget;
+        auto* scrollLayout = new QVBoxLayout(scrollWidget);
         scrollLayout->setSpacing(20);
         scrollLayout->setContentsMargins(10, 10, 10, 10);
 
-        QGroupBox* adminGroup = new QGroupBox("Administrator Mode");
+        auto* adminGroup = new QGroupBox("Administrator Mode");
         adminGroup->setStyleSheet("QGroupBox { border-color: #FF6F00; } QGroupBox::title { color: #E65100; }");
-        QVBoxLayout* adminLayout = new QVBoxLayout(adminGroup);
+        auto* adminLayout = new QVBoxLayout(adminGroup);
         adminLayout->setSpacing(15);
 
-        QLabel* adminDesc = new QLabel(
+        auto* adminDesc = new QLabel(
             "<b>Full System Access</b><br><br>"
             "<b>✓</b> Add, edit, and delete cars, clients, and sales<br>"
             "<b>✓</b> Advanced management and reporting tools<br>"
@@ -78,18 +78,18 @@ AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent), adminMode
         adminDesc->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         adminLayout->addWidget(adminDesc);
 
-        QPushButton* adminButton = new QPushButton("Login as Administrator");
+        auto* adminButton = new QPushButton("Login as Administrator");
         adminButton->setObjectName("adminButton");
         adminLayout->addWidget(adminButton, 0, Qt::AlignCenter);
 
         scrollLayout->addWidget(adminGroup);
 
-        QGroupBox* standardGroup = new QGroupBox("Standard Mode");
+        auto* standardGroup = new QGroupBox("Standard Mode");
         standardGroup->setStyleSheet("QGroupBox { border-color: #1976D2; } QGroupBox::title { color: #1565C0; }");
-        QVBoxLayout* standardLayout = new QVBoxLayout(standardGroup);
+        auto* standardLayout = new QVBoxLayout(standardGroup);
         standardLayout->setSpacing(15);
 
-        QLabel* standardDesc = new QLabel(
+        auto* standardDesc = new QLabel(
             "<b>User Access</b><br><br>"
             "<b>✓</b> View available cars, clients, and sales<br>"
             "<b>✓</b> Make purchases and car reservations<br>"
@@ -103,7 +103,7 @@ AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent), adminMode
         standardDesc->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         standardLayout->addWidget(standardDesc);
 
-        QPushButton* standardButton = new QPushButton("Continue in Standard Mode");
+        auto* standardButton = new QPushButton("Continue in Standard Mode");
         standardButton->setObjectName("standardButton");
         standardLayout->addWidget(standardButton, 0, Qt::AlignCenter);
 
@@ -112,10 +112,10 @@ AccessModeDialog::AccessModeDialog(QWidget* parent) : QDialog(parent), adminMode
         scrollArea->setWidget(scrollWidget);
         mainLayout->addWidget(scrollArea);
 
-        QHBoxLayout* buttonLayout = new QHBoxLayout;
+        auto* buttonLayout = new QHBoxLayout;
         buttonLayout->addStretch();
 
-        QPushButton* exitButton = new QPushButton("Exit Application");
+        auto* exitButton = new QPushButton("Exit Application");
         exitButton->setObjectName("exitButton");
         exitButton->setMinimumWidth(140);
         buttonLayout->addWidget(exitButton);
