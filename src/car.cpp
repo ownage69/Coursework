@@ -8,34 +8,6 @@
 #include "safeinput.h"
 #include "car_serializer.h"
 
-namespace {
-int parseIntSafe(const std::string& text, int fallback = 0) {
-    try {
-        if (!text.empty() && std::all_of(text.begin(), text.end(), ::isdigit)) {
-            return std::stoi(text);
-        }
-    } catch (const std::invalid_argument&) {
-        return fallback; // invalid number format -> use fallback
-    } catch (const std::out_of_range&) {
-        return fallback; // number out of range -> use fallback
-    }
-    return fallback;
-}
-
-double parseDoubleSafe(const std::string& text, double fallback = 0.0) {
-    try {
-        if (!text.empty()) {
-            return std::stod(text);
-        }
-    } catch (const std::invalid_argument&) {
-        return fallback; // invalid number format -> use fallback
-    } catch (const std::out_of_range&) {
-        return fallback; // number out of range -> use fallback
-    }
-    return fallback;
-}
-} // namespace
-
 Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     auto now = std::chrono::system_clock::now();
     auto time = std::chrono::system_clock::to_time_t(now);
@@ -120,19 +92,6 @@ std::string Car::toString() const {
 Car Car::fromString(const std::string& data) {
     return CarSerializer::fromString(data);
 }
-
-bool Car::isValidBrand(const std::string& brand) {
-    return validBrandsAndModels.find(brand) != validBrandsAndModels.end();
-}
-
-bool Car::isValidModelForBrand(const std::string& brand, const std::string& model) {
-    if (auto it = validBrandsAndModels.find(brand); it != validBrandsAndModels.end()) {
-        return it->second.find(model) != it->second.end();
-    }
-    return false;
-}
-
-
 
 std::map<std::string, double, std::less<>> Car::getAvailableOptions() {
     return {
