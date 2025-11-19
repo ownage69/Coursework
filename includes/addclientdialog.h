@@ -28,7 +28,7 @@ public:
 
 private slots:
     void validateAndAccept();
-    void updateOkButton();
+    void updateOkButton() const;
 
 private:
     bool isValidFullName(const QString& name) const;

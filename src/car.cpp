@@ -15,7 +15,9 @@ int parseIntSafe(const std::string& text, int fallback = 0) {
             return std::stoi(text);
         }
     } catch (const std::invalid_argument&) {
+        return fallback; // invalid number format -> use fallback
     } catch (const std::out_of_range&) {
+        return fallback; // number out of range -> use fallback
     }
     return fallback;
 }
@@ -26,7 +28,9 @@ double parseDoubleSafe(const std::string& text, double fallback = 0.0) {
             return std::stod(text);
         }
     } catch (const std::invalid_argument&) {
+        return fallback; // invalid number format -> use fallback
     } catch (const std::out_of_range&) {
+        return fallback; // number out of range -> use fallback
     }
     return fallback;
 }

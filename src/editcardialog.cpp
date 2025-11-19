@@ -89,9 +89,8 @@ Car EditCarDialog::getCar() const {
 
 void EditCarDialog::onBrandChanged() {
     modelCombo->clear();
-    std::string selectedBrand = brandCombo->currentText().toStdString();
     
-    if (selectedBrand == "BMW") {
+    if (auto selectedBrand = brandCombo->currentText().toStdString(); selectedBrand == "BMW") {
         modelCombo->addItems({"3 Series", "5 Series", "X5", "M3", "i8"});
     } else if (selectedBrand == "Audi") {
         modelCombo->addItems({"A4", "Q7", "RS6", "e-tron", "TT"});

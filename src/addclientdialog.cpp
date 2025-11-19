@@ -96,7 +96,7 @@ void AddClientDialog::validateAndAccept() {
     accept();
 }
 
-void AddClientDialog::updateOkButton() {
+void AddClientDialog::updateOkButton() const {
     QString fullName = fullNameEdit->text().trimmed();
     QString phone = phoneEdit->text().trimmed();
     double balance = balanceSpin->value();
