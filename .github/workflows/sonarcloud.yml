@@ -42,15 +42,22 @@ jobs:
           ls -la ${{ env.BUILD_WRAPPER_OUT_DIR }} || true
           echo "First 30 lines of compile_commands.json (if present):"
           head -n 30 ${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json || true
+          echo "Sample path from compile_commands.json:"
+          jq -r '.[0].directory // .[0].file // "N/A"' ${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json 2>/dev/null || echo "jq not available or file empty"
       
-      - name: Normalize absolute paths in compile_commands.json
+      - name: Fix paths in compile_commands.json if needed
         run: |
           if [ -f "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json" ]; then
-            echo "Normalizing paths from ${GITHUB_WORKSPACE} to /github/workspace in compile_commands.json"
-            sed -i "s#${GITHUB_WORKSPACE}#/github/workspace#g" "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json"
-            head -n 30 "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json" || true
-          else
-            echo "compile_commands.json not found!"
+            # Replace /github/workspace with actual GITHUB_WORKSPACE path if present
+            # This handles cases where build-wrapper creates paths with /github/workspace
+            if grep -q "/github/workspace" "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json"; then
+              echo "Found /github/workspace paths, replacing with ${GITHUB_WORKSPACE}"
+              sed -i "s#/github/workspace#${GITHUB_WORKSPACE}#g" "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json"
+              echo "After replacement, sample path:"
+              jq -r '.[0].directory // .[0].file // "N/A"' ${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json 2>/dev/null || echo "jq not available"
+            else
+              echo "No /github/workspace paths found, paths should be correct"
+            fi
           fi
       
       # Run the Sonar scanner directly on the GitHub runner (Ubuntu with glibc),
