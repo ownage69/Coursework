@@ -115,7 +115,7 @@ void MakeSaleDialog::onCarChanged() {
     }
 }
 
-void MakeSaleDialog::updateAddOptionsChecks(const Car& car) {
+void MakeSaleDialog::updateAddOptionsChecks(const Car& car) const {
     for (const auto& [name, checkbox] : optionCheckboxes) {
         bool hasOption = car.getOptions().count(name) > 0;
         checkbox->setChecked(hasOption);

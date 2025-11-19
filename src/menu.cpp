@@ -1,6 +1,7 @@
 #include "menu.h"
 #include <iostream>
 #include "safeinput.h"
+#include "car_validator.h"
 
 void Menu::displayMainMenu() {
     std::cout << "\n=== Car Dealership Management System ===" << std::endl;
@@ -18,15 +19,23 @@ void Menu::displayMainMenu() {
 void Menu::handleAddCar() {
     std::cout << "\n--- Add New Car ---" << std::endl;
     
-    std::string brand = Car::getValidBrandInput();
-    std::string model = Car::getValidModelInput(brand);
+    std::string brand = CarValidator::getValidBrandInput();
+    std::string model = CarValidator::getValidModelInput(brand);
     int year = safePositiveInputInt("Enter year: ");
     double price = safePositiveInputDouble("Enter price: ");
-    std::string color = Car::getValidColorInput();
+    std::string color = CarValidator::getValidColorInput();
     int horsepower = safePositiveInputInt("Enter horsepower: ");
-    std::string transmission = Car::getValidTransmissionInput();
+    std::string transmission = CarValidator::getValidTransmissionInput();
     
-    Car newCar(brand, model, year, price, color, horsepower, transmission);
+    Car newCar;
+    newCar.setBrand(brand);
+    newCar.setModel(model);
+    newCar.setYear(year);
+    newCar.setPrice(price);
+    newCar.setColor(color);
+    newCar.setHorsepower(horsepower);
+    newCar.setTransmission(transmission);
+    newCar.setStock(1);
     
     if (manager.addCar(newCar)) {
         std::cout << "Car added successfully!" << std::endl;
@@ -139,7 +148,7 @@ void Menu::handleSearchCars() {
     
     switch (searchChoice) {
         case 1: {
-            std::string brand = Car::getValidBrandInput();
+            std::string brand = CarValidator::getValidBrandInput();
             results = manager.searchCarsByBrand(brand);
             break;
         }
@@ -155,7 +164,7 @@ void Menu::handleSearchCars() {
             break;
         }
         case 4: {
-            std::string color = Car::getValidColorInput();
+            std::string color = CarValidator::getValidColorInput();
             results = manager.searchCarsByColor(color);
             break;
         }
@@ -166,7 +175,7 @@ void Menu::handleSearchCars() {
             break;
         }
         case 6: {
-            std::string transmission = Car::getValidTransmissionInput();
+            std::string transmission = CarValidator::getValidTransmissionInput();
             results = manager.searchCarsByTransmission(transmission);
             break;
         }

@@ -36,19 +36,6 @@ double parseDoubleSafe(const std::string& text, double fallback = 0.0) {
 }
 } // namespace
 
-const std::map<std::string, std::set<std::string, std::less<>>, std::less<>> Car::validBrandsAndModels = {
-    {"BMW", {"3 Series", "5 Series", "X5", "M3", "i8"}},
-    {"Audi", {"A4", "Q7", "RS6", "e-tron", "TT"}},
-    {"Toyota", {"Camry", "Corolla", "RAV4", "Prius", "Highlander"}},
-    {"Mercedes", {"C-Class", "E-Class", "S-Class", "GLE", "AMG GT"}},
-    {"Ford", {"Mustang", "F-150", "Focus", "Explorer", "Bronco"}},
-    {"Volkswagen", {"Golf", "Passat", "Tiguan", "Beetle", "ID.4"}},
-    {"Honda", {"Civic", "Accord", "CR-V", "Pilot", "Odyssey"}},
-    {"Tesla", {"Model 3", "Model Y", "Model S", "Cybertruck", "Model X"}},
-    {"Chevrolet", {"Silverado", "Camaro", "Tahoe", "Equinox", "Corvette"}},
-    {"Hyundai", {"Sonata", "Tucson", "Santa Fe", "Elantra", "Palisade"}}
-};
-
 Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     auto now = std::chrono::system_clock::now();
     auto time = std::chrono::system_clock::to_time_t(now);
@@ -59,7 +46,7 @@ Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     vin = ss.str();
 }
 
-Car::Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin) 
+Car::Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin) // NOSONAR - parameter object not adopted to avoid widespread API changes
     : brand(brand), model(model), year(year), price(price), color(color), horsepower(horsepower), transmission(transmission), stock(stock), vin(vin) {}
 
 std::string Car::getBrand() const { return brand; }
@@ -145,64 +132,7 @@ bool Car::isValidModelForBrand(const std::string& brand, const std::string& mode
     return false;
 }
 
-std::string Car::getValidBrandInput() {
-    std::cout << "Available brands: ";
-    for (const auto& [brandName, _] : validBrandsAndModels) {
-        std::cout << brandName << " ";
-    }
-    std::cout << std::endl;
-    
-    while (true) {
-        if (std::string brand = readLineTrimmed("Enter brand: "); isValidBrand(brand)) {
-            return brand;
-        }
-        std::cout << "Invalid brand. Please choose from the available brands." << std::endl;
-    }
-}
 
-std::string Car::getValidModelInput(const std::string& brand) {
-    std::cout << "Available models for " << brand << ": ";
-    if (auto it = validBrandsAndModels.find(brand); it != validBrandsAndModels.end()) {
-        for (const auto& modelName : it->second) {
-            std::cout << modelName << " ";
-        }
-    }
-    std::cout << std::endl;
-    
-    while (true) {
-        if (std::string model = readLineTrimmed("Enter model: "); isValidModelForBrand(brand, model)) {
-            return model;
-        }
-        std::cout << "Invalid model for " << brand << ". Please choose from the available models." << std::endl;
-    }
-}
-
-std::string Car::getValidColorInput() {
-    std::set<std::string, std::less<>> validColors = {"Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange", "Brown", "Purple"};
-    
-    std::cout << "Available colors: ";
-    for (const auto& colorName : validColors) {
-        std::cout << colorName << " ";
-    }
-    std::cout << std::endl;
-    
-    while (true) {
-        if (std::string color = readLineTrimmed("Enter color: "); validColors.find(color) != validColors.end()) {
-            return color;
-        }
-        std::cout << "Invalid color. Please choose from the available colors." << std::endl;
-    }
-}
-
-std::string Car::getValidTransmissionInput() {
-    while (true) {
-        std::cout << "Available transmissions: Automatic, Manual" << std::endl;
-        if (std::string transmission = readLineTrimmed("Enter transmission (Automatic/Manual): "); transmission == "Automatic" || transmission == "Manual") {
-            return transmission;
-        }
-        std::cout << "Invalid transmission. Please enter 'Automatic' or 'Manual'." << std::endl;
-    }
-}
 
 std::map<std::string, double, std::less<>> Car::getAvailableOptions() {
     return {

@@ -33,7 +33,7 @@ private:
     size_t selectedCarIndex;
     size_t selectedClientIndex;
 
-    void updateAddOptionsChecks(const Car& car);
+    void updateAddOptionsChecks(const Car& car) const;
 
 public:
     explicit MakeSaleDialog(DealershipManager& manager, QWidget* parent = nullptr);

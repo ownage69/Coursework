@@ -22,8 +22,6 @@ private:
     std::string imagePath{":/images/default_car.png"};
     std::map<std::string, double, std::less<>> options;
 
-    static const std::map<std::string, std::set<std::string, std::less<>>, std::less<>> validBrandsAndModels;
-
 public:
     Car();
     Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin);
@@ -62,11 +60,5 @@ public:
     std::string toString() const;
     static Car fromString(const std::string& data);
     
-    static bool isValidBrand(const std::string& brand);
-    static bool isValidModelForBrand(const std::string& brand, const std::string& model);
-    static std::string getValidBrandInput();
-    static std::string getValidModelInput(const std::string& brand);
-    static std::string getValidColorInput();
-    static std::string getValidTransmissionInput();
     static std::map<std::string, double, std::less<>> getAvailableOptions();
 };
