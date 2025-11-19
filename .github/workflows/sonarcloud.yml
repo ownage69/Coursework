@@ -40,6 +40,18 @@ jobs:
         run: |
           echo "Listing ${BUILD_WRAPPER_OUT_DIR}"
           ls -la ${{ env.BUILD_WRAPPER_OUT_DIR }} || true
+          echo "First 30 lines of compile_commands.json (if present):"
+          head -n 30 ${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json || true
+      
+      - name: Normalize absolute paths in compile_commands.json
+        run: |
+          if [ -f "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json" ]; then
+            echo "Normalizing paths from ${GITHUB_WORKSPACE} to /github/workspace in compile_commands.json"
+            sed -i "s#${GITHUB_WORKSPACE}#/github/workspace#g" "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json"
+            head -n 30 "${BUILD_WRAPPER_OUT_DIR}/compile_commands.json" || true
+          else
+            echo "compile_commands.json not found!"
+          fi
       
       # Run the SonarCloud scanner (properties are read from sonar-project.properties).
       # We do NOT pass the deprecated -Dsonar.cfamily.build-wrapper-output anymore.
