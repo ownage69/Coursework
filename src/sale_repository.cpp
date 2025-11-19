@@ -41,8 +41,8 @@ bool SaleRepository::loadFromFile() {
                     sales.push_back(Sale::fromString(line.toStdString()));
                 } catch (const std::invalid_argument& e) {
                     qCritical() << "Error parsing sale (invalid argument): " << e.what();
-                } catch (const std::exception& e) {
-                    qCritical() << "Error parsing sale: " << e.what();
+                } catch (const std::out_of_range& e) {
+                    qCritical() << "Error parsing sale (out of range): " << e.what();
                 }
             }
         }

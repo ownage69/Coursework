@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <string_view>
 #include "car.h"
 
 class CarRepository {
@@ -22,11 +23,11 @@ public:
     bool loadFromFile();
     bool saveToFile() const;
     
-    std::vector<Car> searchByBrand(const std::string& brand) const;
-    std::vector<Car> searchByModel(const std::string& model) const;
+    std::vector<Car> searchByBrand(std::string_view brand) const;
+    std::vector<Car> searchByModel(std::string_view model) const;
     std::vector<Car> searchByPriceRange(double minPrice, double maxPrice) const;
-    std::vector<Car> searchByColor(const std::string& color) const;
+    std::vector<Car> searchByColor(std::string_view color) const;
     std::vector<Car> searchByHorsepower(int minHp, int maxHp) const;
-    std::vector<Car> searchByTransmission(const std::string& transmission) const;
+    std::vector<Car> searchByTransmission(std::string_view transmission) const;
 };
 

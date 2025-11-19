@@ -64,8 +64,8 @@ bool CarRepository::loadFromFile() {
                     cars.push_back(CarSerializer::fromString(line.toStdString()));
                 } catch (const std::invalid_argument& e) {
                     qCritical() << "Error parsing car (invalid argument): " << e.what();
-                } catch (const std::exception& e) {
-                    qCritical() << "Error parsing car: " << e.what();
+                } catch (const std::out_of_range& e) {
+                    qCritical() << "Error parsing car (out of range): " << e.what();
                 }
             }
         }
@@ -91,20 +91,20 @@ bool CarRepository::saveToFile() const {
     return false;
 }
 
-std::vector<Car> CarRepository::searchByBrand(const std::string& brand) const {
+std::vector<Car> CarRepository::searchByBrand(std::string_view brand) const {
     std::vector<Car> results;
     for (const auto& car : cars) {
-        if (car.getBrand() == brand) {
+        if (brand == car.getBrand()) {
             results.push_back(car);
         }
     }
     return results;
 }
 
-std::vector<Car> CarRepository::searchByModel(const std::string& model) const {
+std::vector<Car> CarRepository::searchByModel(std::string_view model) const {
     std::vector<Car> results;
     for (const auto& car : cars) {
-        if (car.getModel() == model) {
+        if (model == car.getModel()) {
             results.push_back(car);
         }
     }
@@ -122,10 +122,10 @@ std::vector<Car> CarRepository::searchByPriceRange(double minPrice, double maxPr
     return results;
 }
 
-std::vector<Car> CarRepository::searchByColor(const std::string& color) const {
+std::vector<Car> CarRepository::searchByColor(std::string_view color) const {
     std::vector<Car> results;
     for (const auto& car : cars) {
-        if (car.getColor() == color) {
+        if (color == car.getColor()) {
             results.push_back(car);
         }
     }
@@ -143,10 +143,10 @@ std::vector<Car> CarRepository::searchByHorsepower(int minHp, int maxHp) const {
     return results;
 }
 
-std::vector<Car> CarRepository::searchByTransmission(const std::string& transmission) const {
+std::vector<Car> CarRepository::searchByTransmission(std::string_view transmission) const {
     std::vector<Car> results;
     for (const auto& car : cars) {
-        if (car.getTransmission() == transmission) {
+        if (transmission == car.getTransmission()) {
             results.push_back(car);
         }
     }

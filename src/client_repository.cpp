@@ -63,8 +63,8 @@ bool ClientRepository::loadFromFile() {
                     clients.push_back(Client::fromString(line.toStdString()));
                 } catch (const std::invalid_argument& e) {
                     qCritical() << "Error parsing client (invalid argument): " << e.what();
-                } catch (const std::exception& e) {
-                    qCritical() << "Error parsing client: " << e.what();
+                } catch (const std::out_of_range& e) {
+                    qCritical() << "Error parsing client (out of range): " << e.what();
                 }
             }
         }
