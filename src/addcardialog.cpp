@@ -23,7 +23,7 @@ std::string generateVIN() {
     std::string vin;
     std::string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     std::random_device rd; // Using std::random_device directly for non-cryptographic VIN
-    std::uniform_int_distribution<int> dis(0, static_cast<int>(chars.size()) - 1);
+    std::uniform_int_distribution dis(0, static_cast<int>(chars.size()) - 1);
     for (int i = 0; i < 17; ++i) {
         vin += chars[dis(rd)]; // Use rd directly instead of mt19937
     }
