@@ -19,16 +19,21 @@ jobs:
       - name: Install Qt and dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools build-essential
+          sudo apt-get install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools build-essential gcc-13 g++-13
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
       
       - name: Generate Makefile with qmake
-        run: qmake coursework.pro -o Makefile  # Правильный путь и имя файла .pro (в корне)
+        run: |
+          export CC=gcc-13 CXX=g++-13
+          qmake coursework.pro -o Makefile  # Правильный путь и имя файла .pro (в корне)
       
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
       
       - name: Run Build Wrapper
         run: |
+          export CC=gcc-13 CXX=g++-13
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make -j$(nproc)
       
       - name: Verify compile_commands.json
@@ -45,3 +50,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: >
+            -Dsonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
+            -Dsonar.verbose=true
