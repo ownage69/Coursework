@@ -3,11 +3,13 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
+#include <algorithm>
+#include <string_view>
 #include <QtGlobal>
 
 Sale::Sale() : originalPrice(0.0), finalPrice(0.0), discount1(0.0), discount2(0.0) {}
 
-Sale::Sale(Car car, Client client, std::string date, double originalPrice, double finalPrice, double discount1, double discount2) 
+Sale::Sale(const Car& car, const Client& client, const std::string& date, double originalPrice, double finalPrice, double discount1, double discount2) 
     : car(car), client(client), date(date), originalPrice(originalPrice), finalPrice(finalPrice), discount1(discount1), discount2(discount2) {}
 
 Car Sale::getCar() const { return car; }
@@ -16,13 +18,13 @@ std::string Sale::getDate() const { return date; }
 double Sale::getOriginalPrice() const { return originalPrice; }
 double Sale::getFinalPrice() const { return finalPrice; }
 
-void Sale::setCar(Car car) { this->car = car; }
-void Sale::setClient(Client client) { this->client = client; }
-void Sale::setDate(std::string date) { this->date = date; }
-void Sale::setOriginalPrice(double originalPrice) { this->originalPrice = originalPrice; }
-void Sale::setFinalPrice(double finalPrice) { this->finalPrice = finalPrice; }
-void Sale::setDiscount1(double discount1) { this->discount1 = discount1; }
-void Sale::setDiscount2(double discount2) { this->discount2 = discount2; }
+void Sale::setCar(const Car& newCar) { this->car = newCar; }
+void Sale::setClient(const Client& newClient) { this->client = newClient; }
+void Sale::setDate(const std::string& newDate) { this->date = newDate; }
+void Sale::setOriginalPrice(double newOriginalPrice) { this->originalPrice = newOriginalPrice; }
+void Sale::setFinalPrice(double newFinalPrice) { this->finalPrice = newFinalPrice; }
+void Sale::setDiscount1(double newDiscount1) { this->discount1 = newDiscount1; }
+void Sale::setDiscount2(double newDiscount2) { this->discount2 = newDiscount2; }
 
 void Sale::display() const {
     std::cout << "Sale Date: " << date << std::endl;
@@ -70,7 +72,7 @@ Sale Sale::fromString(std::string data) {
     }
 }
 
-double Sale::calculateDiscount(const Client& client, const std::string& date, const std::vector<Sale>& previousSales) {
+double Sale::calculateDiscount(const Client& client, [[maybe_unused]] std::string_view date, const std::vector<Sale>& previousSales) {
     double discount = 0.0;
     if (isFirstTimeBuyer(client, previousSales)) {
         discount += 10.0;
@@ -85,27 +87,23 @@ double Sale::calculateDiscount(const Client& client, const std::string& date, co
 }
 
 bool Sale::isWinterMonth() {
-    time_t t = time(0);
-    tm* now = localtime(&t);
-    int month = now->tm_mon + 1;
+    std::time_t t = std::time(nullptr);
+    std::tm tmBuf{};
+#if defined(_WIN32)
+    localtime_s(&tmBuf, &t);
+#else
+    localtime_r(&t, &tmBuf);
+#endif
+    int month = tmBuf.tm_mon + 1;
     return month == 12 || month == 1 || month == 2;
 }
 
 bool Sale::isFirstTimeBuyer(const Client& client, const std::vector<Sale>& previousSales) {
-    for (const auto& sale : previousSales) {
-        if (sale.getClient().getFullName() == client.getFullName()) {
-            return false;
-        }
-    }
-    return true;
+    return std::none_of(previousSales.begin(), previousSales.end(),
+                        [&client](const Sale& s) { return s.getClient().getFullName() == client.getFullName(); });
 }
 
 bool Sale::isReturningClient(const Client& client, const std::vector<Sale>& previousSales) {
-    int count = 0;
-    for (const auto& sale : previousSales) {
-        if (sale.getClient().getFullName() == client.getFullName()) {
-            count++;
-        }
-    }
-    return count >= 1;
+    return std::any_of(previousSales.begin(), previousSales.end(),
+                       [&client](const Sale& s) { return s.getClient().getFullName() == client.getFullName(); });
 }

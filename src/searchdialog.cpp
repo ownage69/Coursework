@@ -27,9 +27,9 @@ SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent)
         "QPushButton:pressed { background-color: #1565c0; }"
     );
     
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     
-    QFormLayout* formLayout = new QFormLayout;
+    auto* formLayout = new QFormLayout;
     
     searchTypeCombo = new QComboBox;
     searchTypeCombo->addItems({"By Brand", "By Model", "By Price Range", "By Color", "By Horsepower Range", "By Transmission"});
@@ -76,9 +76,9 @@ SearchDialog::SearchDialog(DealershipManager& manager, QWidget* parent)
     
     mainLayout->addLayout(formLayout);
     
-    QHBoxLayout* buttonLayout = new QHBoxLayout;
+    auto* buttonLayout = new QHBoxLayout;
     searchButton = new QPushButton("Search");
-    QPushButton* closeButton = new QPushButton("Close");
+    auto* closeButton = new QPushButton("Close");
     
     buttonLayout->addWidget(searchButton);
     buttonLayout->addWidget(closeButton);
@@ -115,8 +115,7 @@ void SearchDialog::onSearchTypeChanged() {
     maxHpSpin->setVisible(false);
     transmissionCombo->setVisible(false);
     
-    int currentIndex = searchTypeCombo->currentIndex();
-    switch (currentIndex) {
+    switch (searchTypeCombo->currentIndex()) {
         case 0:
             brandCombo->setVisible(true);
             break;
@@ -136,6 +135,8 @@ void SearchDialog::onSearchTypeChanged() {
             break;
         case 5:
             transmissionCombo->setVisible(true);
+            break;
+        default:
             break;
     }
 }

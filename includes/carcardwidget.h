@@ -24,7 +24,7 @@ private:
     QPushButton* editButton;
     QPushButton* deleteButton;
     
-    QString getImagePathForCar(const Car& car) const;
+    QString getImagePathForCar(const Car& carArg) const;
 
 public:
     CarCardWidget(const Car& car, size_t index, QWidget* parent = nullptr);

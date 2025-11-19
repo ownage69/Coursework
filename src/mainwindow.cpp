@@ -282,22 +282,11 @@ void MainWindow::populateSalesTable() {
 
 void MainWindow::updateTables() {
     qDebug() << "updateTables: Starting table updates...";
-    try {
-        populateCarsGrid();
-        populateClientsTable();
-        populateSalesTable();
-        updateInventoryLabel();
-        qDebug() << "updateTables completed";
-    } catch (const std::bad_alloc& e) {
-        qCritical() << "Out of memory in updateTables:" << e.what();
-        QMessageBox::warning(nullptr, "Memory Error", "Out of memory while updating tables.");
-    } catch (const std::runtime_error& e) {
-        qCritical() << "Runtime error in updateTables:" << e.what();
-        QMessageBox::warning(nullptr, "Data Error", "Failed to load table data. Some features may not work correctly.");
-    } catch (const std::logic_error& e) {
-        qCritical() << "Logic error in updateTables:" << e.what();
-        QMessageBox::warning(nullptr, "Data Error", "Failed to load table data. Some features may not work correctly.");
-    }
+    populateCarsGrid();
+    populateClientsTable();
+    populateSalesTable();
+    updateInventoryLabel();
+    qDebug() << "updateTables completed";
 }
 
 void MainWindow::updateInventoryLabel() {

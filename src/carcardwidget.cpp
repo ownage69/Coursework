@@ -10,15 +10,15 @@
 #include <QStyle>
 #include <algorithm>
 
-QString CarCardWidget::getImagePathForCar(const Car& car) const {
-    if (QString savedPath = QString::fromStdString(car.getImagePath()); !savedPath.isEmpty()) {
+QString CarCardWidget::getImagePathForCar(const Car& carArg) const {
+    if (QString savedPath = QString::fromStdString(carArg.getImagePath()); !savedPath.isEmpty()) {
         if (QPixmap testPixmap(savedPath); !testPixmap.isNull()) {
             return savedPath;
         }
     }
     
-    QString brand = QString::fromStdString(car.getBrand()).toLower();
-    QString model = QString::fromStdString(car.getModel()).toLower();
+    QString brand = QString::fromStdString(carArg.getBrand()).toLower();
+    QString model = QString::fromStdString(carArg.getModel()).toLower();
     
     model.replace(" ", "_");
     model.replace("-", "_");

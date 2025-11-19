@@ -48,8 +48,7 @@ int safeInputInt(const string& prompt) {
 
 int safePositiveInputInt(const string& prompt) {
     while (true) {
-        int number = safeInputInt(prompt);
-        if (number > 0)
+        if (int number = safeInputInt(prompt); number > 0)
             return number;
         cout << "Number must be positive.\n";
     }
@@ -78,8 +77,7 @@ double safeInputDouble(const string& prompt) {
 
 double safePositiveInputDouble(const string& prompt) {
     while (true) {
-        double number = safeInputDouble(prompt);
-        if (number > 0)
+        if (double number = safeInputDouble(prompt); number > 0)
             return number;
         cout << "Number must be positive.\n";
     }

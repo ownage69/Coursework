@@ -29,11 +29,8 @@ ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent
         return;
     }
     
-    auto* mainLayout = new QVBoxLayout(this);
-    auto* formLayout = new QFormLayout;
-    
-    carCombo = new QComboBox;
-    clientCombo = new QComboBox;
+    carCombo = new QComboBox(this);
+    clientCombo = new QComboBox(this);
     
     for (size_t i = 0; i < cars.size(); ++i) {
         if (!cars[i].isReserved() && cars[i].getStock() > 0) {
@@ -52,6 +49,9 @@ ReservationDialog::ReservationDialog(DealershipManager& manager, QWidget* parent
         QMessageBox::warning(this, "Error", "No available cars for reservation!");
         return;
     }
+
+    auto* mainLayout = new QVBoxLayout(this);
+    auto* formLayout = new QFormLayout;
     
     formLayout->addRow("Select Car:", carCombo);
     formLayout->addRow("Select Client:", clientCombo);

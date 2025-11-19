@@ -91,8 +91,8 @@ void Car::display() const {
         std::cout << "Reserved by: " << reservedBy << std::endl;
     }
     std::cout << "Options:" << std::endl;
-    for (const auto& [name, price] : options) {
-        std::cout << "  " << name << ": $" << price << std::endl;
+    for (const auto& [name, optPrice] : options) {
+        std::cout << "  " << name << ": $" << optPrice << std::endl;
     }
     std::cout << "Total Price: $" << getTotalPrice() << std::endl;
 }
