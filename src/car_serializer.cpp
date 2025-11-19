@@ -108,7 +108,8 @@ Car CarSerializer::fromString(const std::string& data) {
     int stock = parseInteger(stockStr, 1);
     bool reserved = reservedStr == "1";
     
-    Car car(brand, model, year, price, color, horsepower, transmission, stock, vin);
+    Car::CarSpec spec{brand, model, year, price, color, horsepower, transmission, stock, vin};
+    Car car(spec);
     car.setReserved(reserved);
     car.setReservedBy(reservedBy);
     if (!imagePath.empty()) {

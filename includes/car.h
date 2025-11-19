@@ -24,7 +24,19 @@ private:
 
 public:
     Car();
-    Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin);
+
+    struct CarSpec {
+        std::string brand;
+        std::string model;
+        int year;
+        double price;
+        std::string color;
+        int horsepower;
+        std::string transmission;
+        int stock;
+        std::string vin;
+    };
+    explicit Car(const CarSpec& spec);
     
     std::string getBrand() const;
     std::string getModel() const;

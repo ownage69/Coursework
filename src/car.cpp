@@ -18,8 +18,16 @@ Car::Car() : year(0), price(0.0), horsepower(0), stock(1) {
     vin = ss.str();
 }
 
-Car::Car(const std::string& brand, const std::string& model, int year, double price, const std::string& color, int horsepower, const std::string& transmission, int stock, const std::string& vin) // NOSONAR - parameter object not adopted to avoid widespread API changes
-    : brand(brand), model(model), year(year), price(price), color(color), horsepower(horsepower), transmission(transmission), stock(stock), vin(vin) {}
+Car::Car(const CarSpec& spec)
+    : brand(spec.brand)
+    , model(spec.model)
+    , year(spec.year)
+    , price(spec.price)
+    , color(spec.color)
+    , horsepower(spec.horsepower)
+    , transmission(spec.transmission)
+    , stock(spec.stock)
+    , vin(spec.vin) {}
 
 std::string Car::getBrand() const { return brand; }
 std::string Car::getModel() const { return model; }

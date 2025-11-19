@@ -275,7 +275,7 @@ void AddCarDialog::validateAndAccept() {
 }
 
 Car AddCarDialog::getCar() const {
-    Car car(
+    Car::CarSpec spec{
         brandCombo->currentText().toStdString(),
         modelCombo->currentText().toStdString(),
         yearSpin->value(),
@@ -285,7 +285,8 @@ Car AddCarDialog::getCar() const {
         transmissionCombo->currentText().toStdString(),
         stockSpin->value(),
         vinEdit->text().trimmed().toStdString()
-    );
+    };
+    Car car(spec);
     
     QString imagePath = getImagePathForBrandModel(brandCombo->currentText(), modelCombo->currentText());
     car.setImagePath(imagePath.toStdString());
