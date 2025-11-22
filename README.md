@@ -106,15 +106,15 @@
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<div align="center">
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%9B%A0%EF%B8%8F+%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0" alt="Установка" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%9B%A0%EF%B8%8F%20%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3); border: 2px solid #667eea;">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden;">
+
+<div style="color: white;">
 
 ### Требования
 
@@ -125,10 +125,6 @@
   - Windows: MinGW 64-bit или MSVC
   - Linux: GCC 7+ или Clang 8+
   - macOS: Clang 10+
-
-</div>
-
-<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);">
 
 ### Сборка проекта
 
@@ -157,10 +153,6 @@ cmake ..
 cmake --build .
 ```
 
-</div>
-
-<div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(255, 154, 158, 0.3);">
-
 ### Запуск
 
 После успешной сборки исполняемый файл будет находиться в папке `build/`:
@@ -175,15 +167,17 @@ coursework.exe
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+</div>
 
-<div align="center">
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%8E%AE+%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" alt="Использование" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%8E%AE%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden;">
+
+<div style="color: white;">
 
 ### Основной интерфейс
 
@@ -206,27 +200,19 @@ coursework.exe
    - Детальная информация о каждой продаже
    - Генерация отчётов
 
-</div>
-
-<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 20px; border-radius: 15px; margin: 20px 0; box-shadow: 0 8px 16px rgba(168, 237, 234, 0.3);">
-
 ### ⌨️ Горячие клавиши
 
-<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #667eea;">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
-- <kbd>Ctrl</kbd> + <kbd>F</kbd> — открыть диалог поиска автомобилей
-
-</div>
+- <kbd style="background: rgba(255,255,255,0.3); color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.4);">Ctrl</kbd> + <kbd style="background: rgba(255,255,255,0.3); color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.4);">F</kbd> — открыть диалог поиска автомобилей
 
 </div>
-
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
 
 ### 📋 Основные операции
 
 #### 🚗 Добавление автомобиля
 
-<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
 1. Перейдите на вкладку **Cars**
 2. Нажмите кнопку **"+ Add Car"**
@@ -242,7 +228,7 @@ coursework.exe
 
 #### 💰 Оформление продажи
 
-<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
 1. Нажмите кнопку **"Sell"** на карточке автомобиля или используйте меню
 2. Выберите автомобиль и клиента
@@ -257,9 +243,9 @@ coursework.exe
 
 #### 🔍 Поиск автомобилей
 
-<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
-1. Нажмите <kbd>Ctrl</kbd> + <kbd>F</kbd> или используйте меню поиска
+1. Нажмите <kbd style="background: rgba(255,255,255,0.3); color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.4);">Ctrl</kbd> + <kbd style="background: rgba(255,255,255,0.3); color: white; padding: 5px 10px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.4);">F</kbd> или используйте меню поиска
 2. Выберите тип поиска (бренд, модель, цена и т.д.)
 3. Введите критерии поиска
 4. Нажмите **"Search"**
@@ -269,7 +255,7 @@ coursework.exe
 
 #### 📊 Генерация отчёта
 
-<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
 1. Перейдите на вкладку **Sales**
 2. Нажмите **"📊 Sales Report"**
@@ -281,15 +267,17 @@ coursework.exe
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+</div>
 
-<div align="center">
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%93%81+%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" alt="Структура проекта" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%93%81%20%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(224, 195, 252, 0.3);">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden;">
+
+<div style="color: white;">
 
 ```
 Coursework/
@@ -315,10 +303,6 @@ Coursework/
 ├── coursework.pro        # Файл проекта qmake
 └── README.md            # Документация
 ```
-
-</div>
-
-<div style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(250, 208, 196, 0.3);">
 
 ### 🏗️ Архитектура
 
@@ -362,42 +346,42 @@ Coursework/
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<div align="center">
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%94%A7+%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8" alt="Технологии" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%94%A7%20%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden;">
+
+<div style="color: white;">
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
 
-<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
 
-**<span style="color: white;">C++17</span>**  
+**C++17**  
 Основной язык программирования
 
 </div>
 
-<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
 
-**<span style="color: white;">Qt6 Widgets</span>**  
+**Qt6 Widgets**  
 Фреймворк для графического интерфейса
 
 </div>
 
-<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
 
-**<span style="color: white;">qmake</span>**  
+**qmake**  
 Система сборки
 
 </div>
 
-<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
 
-**<span style="color: white;">Файловое хранилище</span>**  
+**Файловое хранилище**  
 Текстовые файлы для персистентности
 
 </div>
@@ -406,33 +390,35 @@ Coursework/
 
 ### 📚 Используемые компоненты Qt
 
-<div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+<div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 3px solid rgba(255,255,255,0.5);">
 
-- <span style="color: white;">`QMainWindow`</span> — главное окно приложения
-- <span style="color: white;">`QTableView`</span> — таблицы для отображения данных
-- <span style="color: white;">`QDialog`</span> — модальные диалоги
-- <span style="color: white;">`QScrollArea`</span> — прокручиваемые области
-- <span style="color: white;">`QGridLayout`</span> — сетка для карточек автомобилей
-- <span style="color: white;">`QShortcut`</span> — горячие клавиши
-- <span style="color: white;">`QFileDialog`</span> — диалоги выбора файлов
+- `QMainWindow` — главное окно приложения
+- `QTableView` — таблицы для отображения данных
+- `QDialog` — модальные диалоги
+- `QScrollArea` — прокручиваемые области
+- `QGridLayout` — сетка для карточек автомобилей
+- `QShortcut` — горячие клавиши
+- `QFileDialog` — диалоги выбора файлов
+
+</div>
 
 </div>
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<div align="center">
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%93%9D+%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82+%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85" alt="Формат данных" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%93%9D%20%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3);">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden;">
+
+<div style="color: white;">
 
 ### 📄 Структура файлов
 
-<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #667eea;">
+<div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-left: 5px solid rgba(255,255,255,0.6); backdrop-filter: blur(10px);">
 
 #### 📁 cars.txt
 ```csv
@@ -442,7 +428,7 @@ BMW,3 Series,2023,45000,Black,300,Automatic,0,,5,WBABC12345,images/car_bmw_3-ser
 
 </div>
 
-<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #f093fb;">
+<div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-left: 5px solid rgba(255,255,255,0.6); backdrop-filter: blur(10px);">
 
 #### 👥 clients.txt
 ```csv
@@ -452,7 +438,7 @@ John Doe,+1234567890,50000.00
 
 </div>
 
-<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #4facfe;">
+<div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-left: 5px solid rgba(255,255,255,0.6); backdrop-filter: blur(10px);">
 
 #### 💰 sales.txt
 ```csv
@@ -464,17 +450,21 @@ CarData,ClientData,Date,OriginalPrice,FinalPrice,Discount1,Discount2
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+</div>
 
-<div align="center">
+<div align="center" style="position: relative; margin: 30px 0;">
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%8E%A8+%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B" alt="Скриншоты" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,25&height=180&section=header&text=%F0%9F%8E%A8%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=35"/>
 
 </div>
 
-<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3); text-align: center;">
+<div style="background: linear-gradient(90deg, #d4a574 0%, #c97d60 25%, #b85a7e 50%, #9d4ba3 75%, #7b2cbf 100%); padding: 30px; border-radius: 0; margin: -20px 0 30px 0; box-shadow: 0 15px 40px rgba(123, 44, 191, 0.4); position: relative; overflow: hidden; text-align: center;">
+
+<div style="color: white;">
 
 > *Примечание: Добавьте скриншоты интерфейса приложения для лучшей визуализации*
+
+</div>
 
 </div>
 
