@@ -462,7 +462,13 @@ CarData,ClientData,Date,OriginalPrice,FinalPrice,Discount1,Discount2
 
 <div style="color: white;">
 
-> *Примечание: Добавьте скриншоты интерфейса приложения для лучшей визуализации*
+<div align="center">
+<img width="886" height="470" alt="image" src="https://github.com/user-attachments/assets/8d82a070-462e-4284-9362-3ea0287dcd49" />
+<img width="413" height="531" alt="image" src="https://github.com/user-attachments/assets/71f0dc64-b541-47b0-a93e-42c159322d50" />
+<img width="413" height="576" alt="image" src="https://github.com/user-attachments/assets/5efd1601-c923-457c-9ee3-4a01fbe8b310" />
+<img width="886" height="648" alt="image" src="https://github.com/user-attachments/assets/49ec29bc-8db7-4fc9-ad14-1b8559a69329" />
+<img width="886" height="436" alt="image" src="https://github.com/user-attachments/assets/05c5b346-da29-4cac-8e64-2df9e6012e01" />
+</div>
 
 </div>
 
