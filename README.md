@@ -21,23 +21,41 @@
 
 </div>
 
----
+<img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" alt="Snake animation" style="max-width: 100%;">
 
-## 📋 Описание
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=600&lines=%F0%9F%93%8B+%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" alt="Описание проекта" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; border-radius: 15px; margin: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-left: 5px solid #667eea;">
 
 **Car Dealership Management System** — это настольное приложение для управления автосалоном, разработанное на C++17 с использованием Qt6 Widgets. Система предоставляет удобный графический интерфейс для ведения каталога автомобилей, управления клиентской базой, оформления продаж с автоматическим расчётом скидок и генерации аналитических отчётов.
 
+</div>
+
 ### 🎯 Основные цели проекта
 
-- Автоматизация процессов управления автосалоном
-- Упрощение работы с каталогом автомобилей и клиентской базой
-- Автоматический расчёт скидок на основе истории покупок и сезонных факторов
-- Генерация детальных отчётов о продажах
-- Простое развёртывание без необходимости в серверной инфраструктуре
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 10px; margin: 15px 0;">
 
----
+- ✨ **Автоматизация процессов** управления автосалоном
+- 📦 **Упрощение работы** с каталогом автомобилей и клиентской базой
+- 💰 **Автоматический расчёт скидок** на основе истории покупок и сезонных факторов
+- 📊 **Генерация детальных отчётов** о продажах
+- 🚀 **Простое развёртывание** без необходимости в серверной инфраструктуре
 
-## ✨ Возможности
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%E2%9C%A8+%D0%92%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8" alt="Возможности" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
 
 ### 🚙 Управление автомобилями
 - **Каталог автомобилей** — отображение в виде карточек с изображениями и характеристиками
@@ -46,10 +64,18 @@
 - **Управление остатками** — отслеживание количества автомобилей на складе
 - **Резервирование** — возможность резервирования автомобилей для клиентов
 
+</div>
+
+<div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);">
+
 ### 👥 Управление клиентами
 - **Клиентская база** — ведение списка клиентов с контактной информацией
 - **Баланс счёта** — отслеживание баланса каждого клиента
 - **История покупок** — автоматическое отслеживание истории покупок для расчёта скидок
+
+</div>
+
+<div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);">
 
 ### 💰 Оформление продаж
 - **Автоматический расчёт скидок:**
@@ -59,6 +85,10 @@
 - **Выбор опций** — настройка дополнительных опций при оформлении продажи
 - **Проверка баланса** — автоматическая проверка достаточности средств у клиента
 - **Управление остатками** — автоматическое уменьшение остатков на складе
+
+</div>
+
+<div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(67, 233, 123, 0.3);">
 
 ### 🔍 Поиск и фильтрация
 - **Многофункциональный поиск** по различным критериям:
@@ -70,6 +100,10 @@
   - По типу трансмиссии
 - **Горячая клавиша** `Ctrl+F` для быстрого доступа к поиску
 
+</div>
+
+<div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(250, 112, 154, 0.3);">
+
 ### 📊 Отчёты и аналитика
 - **Отчёты о продажах** — генерация отчётов за выбранный период
 - **Статистика** — общее количество продаж и выручка
@@ -77,6 +111,10 @@
   - 📄 HTML/CSV для Excel
   - 📝 RTF для Word
 - **Группировка по датам** — удобное представление данных
+
+</div>
+
+<div style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(48, 207, 208, 0.3);">
 
 ### 💾 Хранение данных
 - **Файловое хранилище** — данные сохраняются в текстовых файлах:
@@ -86,9 +124,17 @@
 - **Автоматическое сохранение** при закрытии приложения
 - **Человекочитаемый формат** — возможность ручного редактирования при необходимости
 
----
+</div>
 
-## 🛠️ Установка
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%9B%A0%EF%B8%8F+%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0" alt="Установка" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3); border: 2px solid #667eea;">
 
 ### Требования
 
@@ -99,6 +145,10 @@
   - Windows: MinGW 64-bit или MSVC
   - Linux: GCC 7+ или Clang 8+
   - macOS: Clang 10+
+
+</div>
+
+<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);">
 
 ### Сборка проекта
 
@@ -127,6 +177,10 @@ cmake ..
 cmake --build .
 ```
 
+</div>
+
+<div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(255, 154, 158, 0.3);">
+
 ### Запуск
 
 После успешной сборки исполняемый файл будет находиться в папке `build/`:
@@ -139,9 +193,17 @@ cmake --build .
 coursework.exe
 ```
 
----
+</div>
 
-## 🎮 Использование
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%8E%AE+%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" alt="Использование" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);">
 
 ### Основной интерфейс
 
@@ -164,13 +226,27 @@ coursework.exe
    - Детальная информация о каждой продаже
    - Генерация отчётов
 
-### Горячие клавиши
+</div>
 
-- `Ctrl+F` — открыть диалог поиска автомобилей
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 20px; border-radius: 15px; margin: 20px 0; box-shadow: 0 8px 16px rgba(168, 237, 234, 0.3);">
 
-### Основные операции
+### ⌨️ Горячие клавиши
 
-#### Добавление автомобиля
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #667eea;">
+
+- <kbd>Ctrl</kbd> + <kbd>F</kbd> — открыть диалог поиска автомобилей
+
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+
+### 📋 Основные операции
+
+#### 🚗 Добавление автомобиля
+
+<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
 
 1. Перейдите на вкладку **Cars**
 2. Нажмите кнопку **"+ Add Car"**
@@ -182,7 +258,11 @@ coursework.exe
    - Выберите дополнительные опции (опционально)
 4. Нажмите **OK**
 
-#### Оформление продажи
+</div>
+
+#### 💰 Оформление продажи
+
+<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
 
 1. Нажмите кнопку **"Sell"** на карточке автомобиля или используйте меню
 2. Выберите автомобиль и клиента
@@ -193,15 +273,23 @@ coursework.exe
    - Итоговую цену
 5. Подтвердите продажу
 
-#### Поиск автомобилей
+</div>
 
-1. Нажмите `Ctrl+F` или используйте меню поиска
+#### 🔍 Поиск автомобилей
+
+<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+
+1. Нажмите <kbd>Ctrl</kbd> + <kbd>F</kbd> или используйте меню поиска
 2. Выберите тип поиска (бренд, модель, цена и т.д.)
 3. Введите критерии поиска
 4. Нажмите **"Search"**
 5. Результаты отобразятся в виде карточек
 
-#### Генерация отчёта
+</div>
+
+#### 📊 Генерация отчёта
+
+<div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
 
 1. Перейдите на вкладку **Sales**
 2. Нажмите **"📊 Sales Report"**
@@ -209,9 +297,19 @@ coursework.exe
 4. Нажмите **"Generate Report"**
 5. При необходимости экспортируйте в Excel или Word
 
----
+</div>
 
-## 📁 Структура проекта
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%93%81+%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" alt="Структура проекта" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(224, 195, 252, 0.3);">
 
 ```
 Coursework/
@@ -238,62 +336,171 @@ Coursework/
 └── README.md            # Документация
 ```
 
-### Архитектура
+</div>
+
+<div style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(250, 208, 196, 0.3);">
+
+### 🏗️ Архитектура
 
 Проект следует принципам **разделения ответственности**:
 
-- **UI Layer** (`MainWindow`, диалоги) — графический интерфейс и взаимодействие с пользователем
-- **Business Logic** (`DealershipManager`, сервисы) — бизнес-логика и координация операций
-- **Data Layer** (репозитории) — работа с файловым хранилищем
-- **Models** (`Car`, `Client`, `Sale`) — модели данных
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
 
----
+<div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 4px solid #667eea;">
 
-## 🔧 Технологии
+**🎨 UI Layer**  
+`MainWindow`, диалоги  
+Графический интерфейс и взаимодействие с пользователем
 
-- **C++17** — основной язык программирования
-- **Qt6 Widgets** — фреймворк для графического интерфейса
-- **qmake** — система сборки
-- **Файловое хранилище** — текстовые файлы для персистентности данных
+</div>
 
-### Используемые компоненты Qt
+<div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 4px solid #764ba2;">
 
-- `QMainWindow` — главное окно приложения
-- `QTableView` — таблицы для отображения данных
-- `QDialog` — модальные диалоги
-- `QScrollArea` — прокручиваемые области
-- `QGridLayout` — сетка для карточек автомобилей
-- `QShortcut` — горячие клавиши
-- `QFileDialog` — диалоги выбора файлов
+**⚙️ Business Logic**  
+`DealershipManager`, сервисы  
+Бизнес-логика и координация операций
 
----
+</div>
 
-## 📝 Формат данных
+<div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 4px solid #f093fb;">
 
-### Структура файлов
+**💾 Data Layer**  
+Репозитории  
+Работа с файловым хранилищем
 
-#### cars.txt
-```
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 4px solid #4facfe;">
+
+**📦 Models**  
+`Car`, `Client`, `Sale`  
+Модели данных
+
+</div>
+
+</div>
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%94%A7+%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8" alt="Технологии" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+
+**<span style="color: white;">C++17</span>**  
+Основной язык программирования
+
+</div>
+
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+
+**<span style="color: white;">Qt6 Widgets</span>**  
+Фреймворк для графического интерфейса
+
+</div>
+
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+
+**<span style="color: white;">qmake</span>**  
+Система сборки
+
+</div>
+
+<div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+
+**<span style="color: white;">Файловое хранилище</span>**  
+Текстовые файлы для персистентности
+
+</div>
+
+</div>
+
+### 📚 Используемые компоненты Qt
+
+<div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+
+- <span style="color: white;">`QMainWindow`</span> — главное окно приложения
+- <span style="color: white;">`QTableView`</span> — таблицы для отображения данных
+- <span style="color: white;">`QDialog`</span> — модальные диалоги
+- <span style="color: white;">`QScrollArea`</span> — прокручиваемые области
+- <span style="color: white;">`QGridLayout`</span> — сетка для карточек автомобилей
+- <span style="color: white;">`QShortcut`</span> — горячие клавиши
+- <span style="color: white;">`QFileDialog`</span> — диалоги выбора файлов
+
+</div>
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%93%9D+%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82+%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85" alt="Формат данных" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3);">
+
+### 📄 Структура файлов
+
+<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #667eea;">
+
+#### 📁 cars.txt
+```csv
 Brand,Model,Year,Price,Color,Horsepower,Transmission,Reserved,ReservedBy,Stock,VIN,ImagePath,Options
 BMW,3 Series,2023,45000,Black,300,Automatic,0,,5,WBABC12345,images/car_bmw_3-series.jpg,Leather Seats:1500;Sunroof:2000
 ```
 
-#### clients.txt
-```
+</div>
+
+<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #f093fb;">
+
+#### 👥 clients.txt
+```csv
 Full Name,Phone,Balance
 John Doe,+1234567890,50000.00
 ```
 
-#### sales.txt
-```
+</div>
+
+<div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #4facfe;">
+
+#### 💰 sales.txt
+```csv
 CarData,ClientData,Date,OriginalPrice,FinalPrice,Discount1,Discount2
 [сериализованные данные автомобиля],[сериализованные данные клиента],2024-01-15,45000.00,40500.00,10.0,0.0
 ```
 
----
+</div>
 
-## 🎨 Скриншоты
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=header&fontSize=30&text=%20&animation=twinkling"/>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=667eea&center=true&vCenter=true&width=500&lines=%F0%9F%8E%A8+%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B" alt="Скриншоты" />
+
+</div>
+
+<div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3); text-align: center;">
 
 > *Примечание: Добавьте скриншоты интерфейса приложения для лучшей визуализации*
 
+</div>
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer&text=%20&animation=twinkling"/>
+
+</div>
 
