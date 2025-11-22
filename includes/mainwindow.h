@@ -16,6 +16,7 @@
 #include <QWidget>
 #include <QCloseEvent>
 #include <QTabWidget>
+#include <QShortcut>
 #include <vector>
 #include "dealership_manager.h"
 #include "addcardialog.h"

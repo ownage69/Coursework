@@ -5,6 +5,8 @@
 #include <QScrollArea>
 #include <QGridLayout>
 #include <QCloseEvent>
+#include <QShortcut>
+#include <QKeySequence>
 #include <vector>
 #include "addcardialog.h"
 #include "addclientdialog.h"
@@ -121,6 +123,10 @@ void MainWindow::setupUI() {
     mainLayout->addWidget(tabWidget);
     
     setupTables();
+    
+    // Добавляем горячую клавишу Ctrl+F для поиска автомобилей
+    auto* searchShortcut = new QShortcut(QKeySequence::Find, this);
+    connect(searchShortcut, &QShortcut::activated, this, &MainWindow::searchCars);
     
     setStyleSheet(
         "QMainWindow { background-color: #ffffff; color: #333333; font-family: 'Segoe UI', Arial, sans-serif; }"
