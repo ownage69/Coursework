@@ -1,15 +1,23 @@
-# 🚗 Car Dealership Management System
-
 <div align="center">
 
-![C++](https://img.shields.io/badge/C++-17-blue.svg)
-![Qt](https://img.shields.io/badge/Qt-6.9-green.svg)
-![License](https://img.shields.io/badge/license-MIT-orange.svg)
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=%F0%9F%9A%97%20Car%20Dealership%20Management%20System&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32"/>
 
-**Современная система управления автосалоном с графическим интерфейсом**
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px; margin: 25px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
+
+![C++](https://img.shields.io/badge/C++-17-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Qt](https://img.shields.io/badge/Qt-6.9-41CD52?style=for-the-badge&logo=qt&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=for-the-badge)
+
+**<span style="color: white; font-size: 18px;">Современная система управления автосалоном с графическим интерфейсом</span>**
+
+<div style="margin-top: 15px;">
 
 [Возможности](#-возможности) • [Установка](#-установка) • [Использование](#-использование) • [Структура проекта](#-структура-проекта) • [Технологии](#-технологии)
+
+</div>
+
+</div>
 
 </div>
 
@@ -285,9 +293,7 @@ CarData,ClientData,Date,OriginalPrice,FinalPrice,Discount1,Discount2
 ---
 
 ## 🎨 Скриншоты
-<div align = "center">
-<img width="886" height="470" alt="image" src="https://github.com/user-attachments/assets/3449d964-7ec5-4ec4-b099-762c5852a7f5" />
-<img width="413" height="531" alt="image" src="https://github.com/user-attachments/assets/c2756501-8ab2-4f97-81c5-6405c6ff88a9" />
-<img width="886" height="620" alt="image" src="https://github.com/user-attachments/assets/7c5cb8d7-49ce-490a-ae6d-dc943a841c3c" />
-<img width="886" height="436" alt="image" src="https://github.com/user-attachments/assets/75ce1388-0a69-42a4-9f25-5609a1f17526" />
-</div>
+
+> *Примечание: Добавьте скриншоты интерфейса приложения для лучшей визуализации*
+
+
