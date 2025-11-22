@@ -125,7 +125,7 @@ void MainWindow::setupUI() {
     setupTables();
     
     // Добавляем горячую клавишу Ctrl+F для поиска автомобилей
-    auto* searchShortcut = new QShortcut(QKeySequence::Find, this);
+    const auto* searchShortcut = new QShortcut(QKeySequence::Find, this);
     connect(searchShortcut, &QShortcut::activated, this, &MainWindow::searchCars);
     
     setStyleSheet(
