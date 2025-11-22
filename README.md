@@ -285,7 +285,9 @@ CarData,ClientData,Date,OriginalPrice,FinalPrice,Discount1,Discount2
 ---
 
 ## 🎨 Скриншоты
+<div align = "center">
 <img width="886" height="470" alt="image" src="https://github.com/user-attachments/assets/3449d964-7ec5-4ec4-b099-762c5852a7f5" />
 <img width="413" height="531" alt="image" src="https://github.com/user-attachments/assets/c2756501-8ab2-4f97-81c5-6405c6ff88a9" />
 <img width="886" height="620" alt="image" src="https://github.com/user-attachments/assets/7c5cb8d7-49ce-490a-ae6d-dc943a841c3c" />
 <img width="886" height="436" alt="image" src="https://github.com/user-attachments/assets/75ce1388-0a69-42a4-9f25-5609a1f17526" />
+</div>
